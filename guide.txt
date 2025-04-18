@@ -1,0 +1,7 @@
+Sử dung bootrap5, sử dung dữ liệu tĩnh (không dùng dữ liệu của db)
+Deadline 20h30 23/4/2025
+Import file thuquan3.sql (db tạm thời)
+
+-Lac thiết kế lại Home/Index
+-Sanka thiết kế lại Thue/Index
+-Giàu thiết giỏ hàng

@@ -1,0 +1,63 @@
+﻿@model ThuQuan.Models.User
+
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <!-- Form Register -->
+        <form asp-action="Register" method="post">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="divider d-flex align-items-center my-4">
+                <h3 class="text-center fw-bold mx-3 mb-0">Register</h3>
+            </div>
+
+            <!-- Username input -->
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <!-- /Username input -->
+
+            <!-- Email input -->
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <!-- /Email input -->
+
+            <!-- Password input -->
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input asp-for="Password" class="form-control" type="password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <!-- /Password input -->
+
+
+            <div class="text-center text-lg-start mt-4 pt-2">
+                <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
+                <p class="small fw-bold mt-2 pt-1 mb-0">
+                Don't have an account? <a asp-action="Login" class="link-success">Login</a></p>
+            </div>
+        </form>
+        <!-- /Form Register -->
+      </div>
+    </div>
+  </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

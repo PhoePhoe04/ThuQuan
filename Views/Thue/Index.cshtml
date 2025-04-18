@@ -1,0 +1,89 @@
+﻿@model ThuQuan.ViewModels.ThueIndexViewModel
+@{
+    ViewData["Title"] = "Thuê thiết bị";
+}
+
+<div class="container-fluid">
+    @* Nav bar *@
+    <div class="mb-3">
+        @await Component.InvokeAsync("CategoryBar")
+    </div>
+
+    @* Device list *@
+    <div class="row">
+        @* @foreach (var device in Model.Devices)
+        {
+            
+        } *@
+        <div class="col-md-4 mb-4"></div>
+            <div class="card h-100 shadow-sm">
+                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg" class="card-img-top" style="height: 200px; object-fit: contain;">
+                <div class="card-body">
+                    <h5 class="card-title">Test</h5>
+                    <p class="card-text">Đồ test </p>
+                    <p class="card-text"><strong>Status:</strong>Không hiệu quả</p>
+                </div>
+                <div class="card-footer d-flex justify-center gap-2">
+                    <a href="#" class="btn btn-outline-primary btn-sm">Yêu thích</a>
+                    <a asp-controller="Devices" asp-action="Details" asp-route-id="" class="btn btn-success btn-sm">Thuê</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4"></div>
+            <div class="card h-100 shadow-sm">
+                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg" class="card-img-top" style="height: 200px; object-fit: contain;">
+                <div class="card-body">
+                    <h5 class="card-title">Test</h5>
+                    <p class="card-text">Đồ test </p>
+                    <p class="card-text"><strong>Status:</strong>Không hiệu quả</p>
+                </div>
+                <div class="card-footer d-flex justify-center gap-2">
+                    <a href="#" class="btn btn-outline-primary btn-sm">Yêu thích</a>
+                    <a asp-controller="Devices" asp-action="Details" asp-route-id="" class="btn btn-success btn-sm">Thuê</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4"></div>
+            <div class="card h-100 shadow-sm">
+                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg" class="card-img-top" style="height: 200px; object-fit: contain;">
+                <div class="card-body">
+                    <h5 class="card-title">Test</h5>
+                    <p class="card-text">Đồ test </p>
+                    <p class="card-text"><strong>Status:</strong>Không hiệu quả</p>
+                </div>
+                <div class="card-footer d-flex justify-center gap-2">
+                    <a href="#" class="btn btn-outline-primary btn-sm">Yêu thích</a>
+                    <a asp-controller="Devices" asp-action="Details" asp-route-id="" class="btn btn-success btn-sm">Thuê</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4"></div>
+            <div class="card h-100 shadow-sm">
+                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg" class="card-img-top" style="height: 200px; object-fit: contain;">
+                <div class="card-body">
+                    <h5 class="card-title">Test</h5>
+                    <p class="card-text">Đồ test </p>
+                    <p class="card-text"><strong>Status:</strong>Không hiệu quả</p>
+                </div>
+                <div class="card-footer d-flex justify-center gap-2">
+                    <a href="#" class="btn btn-outline-primary btn-sm">Yêu thích</a>
+                    <a asp-controller="Devices" asp-action="Details" asp-route-id="" class="btn btn-success btn-sm">Thuê</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4"></div>
+            <div class="card h-100 shadow-sm">
+                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg" class="card-img-top" style="height: 200px; object-fit: contain;">
+                <div class="card-body">
+                    <h5 class="card-title">Test</h5>
+                    <p class="card-text">Đồ test </p>
+                    <p class="card-text"><strong>Status:</strong>Không hiệu quả</p>
+                </div>
+                <div class="card-footer d-flex justify-center gap-2">
+                    <a href="#" class="btn btn-outline-primary btn-sm">Yêu thích</a>
+                    <a asp-controller="Devices" asp-action="Details" asp-route-id="" class="btn btn-success btn-sm">Thuê</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@model List<ThuQuan.Models.Category>
+
+<ul class="nav justify-content-center gap-2">
+    <li class="nav-item border border-dark rounded-pill">
+        <a class="nav-link" href="#">All</a>
+    </li>
+    @foreach (var item in Model)
+    {
+        <li class="nav-item border border-dark rounded-pill">
+            <a class="nav-link" href="#">@item.Name</a>
+        </li>
+    }
+</ul>
