@@ -30,19 +30,12 @@
                             <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
                         </li>
                     </ul>
-                    <ul class="navbar-nav justify-content-end">
-                        <li class="nav-item"></li>
-                            <a class="nav-link text-dark" asp-controller="User" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="User" asp-action="Register">Register</a>
-                        </li>
-                    </ul>
+                    <partial name="_LoginPartial"/>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

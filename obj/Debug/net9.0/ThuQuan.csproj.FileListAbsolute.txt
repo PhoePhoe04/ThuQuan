@@ -186,3 +186,5 @@ D:\Hoc\HOC_KY_2_NAM_3\CSharp\ThuQuan\obj\Debug\net9.0\ThuQuan.genruntimeconfig.c
 D:\Hoc\HOC_KY_2_NAM_3\CSharp\ThuQuan\obj\Debug\net9.0\ref\ThuQuan.dll
 D:\Hoc\HOC_KY_2_NAM_3\CSharp\ThuQuan\obj\Debug\net9.0\compressed\x6isk193x1-idxxdpz7zm.gz
 D:\Hoc\HOC_KY_2_NAM_3\CSharp\ThuQuan\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Hoc\HOC_KY_2_NAM_3\CSharp\ThuQuan\obj\Debug\net9.0\ThuQuan.sourcelink.json
+D:\Hoc\HOC_KY_2_NAM_3\CSharp\ThuQuan\obj\Debug\net9.0\compressed\hbkawg1sdf-999f9owvh3.gz

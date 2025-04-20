@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QXw6qw63Qr7n1EzUhUFMnqkUyc+xHQoJi9qAWGUU0S4=",
+  "Hash": "69enZdPl1yzWM2Mh2KHrnR5IN3LZYp5VGxvNN52ls7Q=",
   "Source": "ThuQuan",
   "BasePath": "_content/ThuQuan",
   "Mode": "Default",
@@ -731,6 +731,27 @@
       "OriginalItemSpec": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
+      "Identity": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\obj\\Debug\\net9.0\\compressed\\hbkawg1sdf-999f9owvh3.gz",
+      "SourceId": "ThuQuan",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/ThuQuan",
+      "RelativePath": "css/account#[.{fingerprint=999f9owvh3}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\css\\account.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "qv57nb8268",
+      "Integrity": "hpwi/m0SpuhIapeygEhtL7Lnrvdv02MeovZCEQfpxKQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\css\\account.css"
+    },
+    {
       "Identity": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\obj\\Debug\\net9.0\\compressed\\higwn4vfjt-bqjiyaj88i.gz",
       "SourceId": "ThuQuan",
       "SourceType": "Discovered",
@@ -1403,6 +1424,27 @@
       "OriginalItemSpec": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\ThuQuan.bundle.scp.css"
     },
     {
+      "Identity": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\css\\account.css",
+      "SourceId": "ThuQuan",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\",
+      "BasePath": "_content/ThuQuan",
+      "RelativePath": "css/account#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "999f9owvh3",
+      "Integrity": "Y1qmgOyGMo7GGy/W5z6FBrDlFY+kQfhpg48w4OVFAIA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\account.css"
+    },
+    {
       "Identity": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\css\\site.css",
       "SourceId": "ThuQuan",
       "SourceType": "Discovered",
@@ -1443,6 +1485,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\images\\account-bg.jpg",
+      "SourceId": "ThuQuan",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\",
+      "BasePath": "_content/ThuQuan",
+      "RelativePath": "images/account-bg#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "stuepsepmj",
+      "Integrity": "kFwOVPZMZyZHcz+pOtNkjYGaWYEMFA9+QVs59m9TU+Y=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\account-bg.jpg"
     },
     {
       "Identity": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\js\\site.js",
@@ -2728,6 +2791,304 @@
   ],
   "Endpoints": [
     {
+      "Route": "css/account.999f9owvh3.css",
+      "AssetFile": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\obj\\Debug\\net9.0\\compressed\\hbkawg1sdf-999f9owvh3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.003521126761"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "283"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hpwi/m0SpuhIapeygEhtL7Lnrvdv02MeovZCEQfpxKQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 18:53:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Y1qmgOyGMo7GGy/W5z6FBrDlFY+kQfhpg48w4OVFAIA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "999f9owvh3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/account.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Y1qmgOyGMo7GGy/W5z6FBrDlFY+kQfhpg48w4OVFAIA="
+        }
+      ]
+    },
+    {
+      "Route": "css/account.999f9owvh3.css",
+      "AssetFile": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\css\\account.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "474"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Y1qmgOyGMo7GGy/W5z6FBrDlFY+kQfhpg48w4OVFAIA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 18:53:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "999f9owvh3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/account.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Y1qmgOyGMo7GGy/W5z6FBrDlFY+kQfhpg48w4OVFAIA="
+        }
+      ]
+    },
+    {
+      "Route": "css/account.999f9owvh3.css.gz",
+      "AssetFile": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\obj\\Debug\\net9.0\\compressed\\hbkawg1sdf-999f9owvh3.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "283"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hpwi/m0SpuhIapeygEhtL7Lnrvdv02MeovZCEQfpxKQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 18:53:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "999f9owvh3"
+        },
+        {
+          "Name": "label",
+          "Value": "css/account.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hpwi/m0SpuhIapeygEhtL7Lnrvdv02MeovZCEQfpxKQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/account.css",
+      "AssetFile": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\obj\\Debug\\net9.0\\compressed\\hbkawg1sdf-999f9owvh3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.003521126761"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "283"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hpwi/m0SpuhIapeygEhtL7Lnrvdv02MeovZCEQfpxKQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 18:53:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Y1qmgOyGMo7GGy/W5z6FBrDlFY+kQfhpg48w4OVFAIA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Y1qmgOyGMo7GGy/W5z6FBrDlFY+kQfhpg48w4OVFAIA="
+        }
+      ]
+    },
+    {
+      "Route": "css/account.css",
+      "AssetFile": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\css\\account.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "474"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Y1qmgOyGMo7GGy/W5z6FBrDlFY+kQfhpg48w4OVFAIA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 18:53:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Y1qmgOyGMo7GGy/W5z6FBrDlFY+kQfhpg48w4OVFAIA="
+        }
+      ]
+    },
+    {
+      "Route": "css/account.css.gz",
+      "AssetFile": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\obj\\Debug\\net9.0\\compressed\\hbkawg1sdf-999f9owvh3.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "283"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hpwi/m0SpuhIapeygEhtL7Lnrvdv02MeovZCEQfpxKQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 18:53:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hpwi/m0SpuhIapeygEhtL7Lnrvdv02MeovZCEQfpxKQ="
+        }
+      ]
+    },
+    {
       "Route": "css/site.css",
       "AssetFile": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\obj\\Debug\\net9.0\\compressed\\x6isk193x1-idxxdpz7zm.gz",
       "Selectors": [
@@ -3320,6 +3681,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-wfFuuYm+Lh6RbCeeiUqxw334b/hIOkp5j9eokGUM1Y0="
+        }
+      ]
+    },
+    {
+      "Route": "images/account-bg.jpg",
+      "AssetFile": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\images\\account-bg.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "102448"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kFwOVPZMZyZHcz+pOtNkjYGaWYEMFA9+QVs59m9TU+Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 18:28:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kFwOVPZMZyZHcz+pOtNkjYGaWYEMFA9+QVs59m9TU+Y="
+        }
+      ]
+    },
+    {
+      "Route": "images/account-bg.stuepsepmj.jpg",
+      "AssetFile": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\images\\account-bg.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "102448"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kFwOVPZMZyZHcz+pOtNkjYGaWYEMFA9+QVs59m9TU+Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 18 Apr 2025 18:28:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "stuepsepmj"
+        },
+        {
+          "Name": "label",
+          "Value": "images/account-bg.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kFwOVPZMZyZHcz+pOtNkjYGaWYEMFA9+QVs59m9TU+Y="
         }
       ]
     },
