@@ -5,12 +5,20 @@
       "PackagePath": "staticwebassets\\ThuQuan.hhpu68qpvu.bundle.scp.css"
     },
     {
+      "Id": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\css\\account.css",
+      "PackagePath": "staticwebassets\\css\\account.css"
+    },
+    {
       "Id": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\images\\account-bg.jpg",
+      "PackagePath": "staticwebassets\\images\\account-bg.jpg"
     },
     {
       "Id": "D:\\Hoc\\HOC_KY_2_NAM_3\\CSharp\\ThuQuan\\wwwroot\\js\\site.js",
