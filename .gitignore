@@ -1,0 +1,26 @@
+# Build folders
+bin/
+obj/
+
+# VS Code
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+
+# Logs and temp
+*.log
+*.tmp
+
+# Publish output
+publish/
+out/
+
+# Database files (nếu có SQLite hay LocalDB)
+*.db
+*.db-shm
+*.db-wal
+
+# ASP.NET Secrets
+secrets.json
