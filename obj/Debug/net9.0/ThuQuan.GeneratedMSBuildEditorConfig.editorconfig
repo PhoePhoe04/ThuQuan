@@ -17,69 +17,77 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ThuQuan
 build_property.RootNamespace = ThuQuan
-build_property.ProjectDir = D:\Hoc\HOC_KY_2_NAM_3\CSharp\ThuQuan\
+build_property.ProjectDir = C:\Na\C#\ThuQuan\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Hoc\HOC_KY_2_NAM_3\CSharp\ThuQuan
+build_property.MSBuildProjectDirectory = C:\Na\C#\ThuQuan
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/Home/Index.cshtml]
+[C:/Na/C\#/ThuQuan/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/Home/Privacy.cshtml]
+[C:/Na/C\#/ThuQuan/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/Home/TrangChu.cshtml]
+[C:/Na/C\#/ThuQuan/Views/Home/TrangChu.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUcmFuZ0NodS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/Shared/Components/CategoryBar/Default.cshtml]
+[C:/Na/C\#/ThuQuan/Views/Product/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Na/C\#/ThuQuan/Views/Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Na/C\#/ThuQuan/Views/Shared/Components/CategoryBar/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcQ2F0ZWdvcnlCYXJcRGVmYXVsdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/Shared/Error.cshtml]
+[C:/Na/C\#/ThuQuan/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/Shared/LoginPartial.cshtml]
+[C:/Na/C\#/ThuQuan/Views/Shared/LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXExvZ2luUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Na/C\#/ThuQuan/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/Thue/Index.cshtml]
+[C:/Na/C\#/ThuQuan/Views/Thue/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGh1ZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/User/Index.cshtml]
+[C:/Na/C\#/ThuQuan/Views/User/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/User/Login.cshtml]
+[C:/Na/C\#/ThuQuan/Views/User/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/User/Register.cshtml]
+[C:/Na/C\#/ThuQuan/Views/User/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/_ViewImports.cshtml]
+[C:/Na/C\#/ThuQuan/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/_ViewStart.cshtml]
+[C:/Na/C\#/ThuQuan/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Hoc/HOC_KY_2_NAM_3/CSharp/ThuQuan/Views/Shared/_Layout.cshtml]
+[C:/Na/C\#/ThuQuan/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-00vn6mfnav

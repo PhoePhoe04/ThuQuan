@@ -86,3 +86,55 @@ body {
   background-color: #218838;
   border-color: #1e7e34;
 }
+
+/* Custom styles for the camera rental site */
+
+/* Product image styling */
+.product-image {
+  max-height: 500px;
+  object-fit: contain;
+}
+
+/* Category badge styling */
+.category-badge .badge {
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+/* Price styling */
+.price-section h3 {
+  font-size: 1.8rem;
+}
+
+/* Specifications list styling */
+.specifications li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+/* Rental button styling */
+.btn-dark {
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+/* Date picker styling */
+.rental-dates .form-control {
+  border-radius: 4px;
+}
+
+/* Footer styling */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
+
+@media (max-width: 768px) {
+  .product-image {
+    max-height: 300px;
+  }
+}
