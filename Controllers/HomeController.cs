@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ThuQuan.Models;
 
@@ -17,11 +18,8 @@ public class HomeController : Controller
     {
         return View();
     }
-    public IActionResult TrangChu()
-    {
-        return View();
-    }
 
+    [Authorize]
     public IActionResult Privacy()
     {
         return View();

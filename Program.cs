@@ -29,13 +29,6 @@ builder.Services.AddIdentity<Users, IdentityRole>(options =>
     .AddEntityFrameworkStores<ThuQuanContext>()
     .AddDefaultTokenProviders();
 
-// builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-//     .AddCookie(options =>
-//     {
-//         options.LoginPath = "/User/Login";
-//         options.LogoutPath = "/User/Logout";
-//     });
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
