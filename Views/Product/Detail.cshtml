@@ -1,0 +1,53 @@
+@model ProductDetailViewModel
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Product Image Column -->
+        <div class="col-md-6">
+            <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid product-image">
+        </div>
+        
+        <!-- Product Details Column -->
+        <div class="col-md-6">
+            <h2 class="mb-1">@Model.Name</h2>
+            
+            <div class="category-badge mb-2">
+                <span class="badge bg-light text-dark">@Model.Category</span>
+            </div>
+            
+            <div class="price-section mb-3">
+                <h3 class="text-success fw-bold">@Model.FormattedPrice</h3>
+            </div>
+            
+            <p class="text-muted mb-4">
+                @Model.Description
+            </p>
+            
+            <div class="rental-dates row mb-4">
+                <div class="col-6">
+                    <label for="startDate" class="form-label">Ngày thuê</label>
+                    <input type="date" class="form-control" id="startDate">
+                </div>
+                <div class="col-6">
+                    <label for="endDate" class="form-label">Ngày trả</label>
+                    <input type="date" class="form-control" id="endDate">
+                </div>
+            </div>
+            
+            <button type="button" class="btn btn-dark w-100 py-2 mb-3">Thuê</button>
+            
+            <div class="specifications mt-4">
+                <h5>Thông số kỹ thuật:</h5>
+                <ul class="list-unstyled">
+                    @foreach (var spec in Model.Specifications)
+                    {
+                        <li><i class="bi bi-check-circle-fill text-success me-2"></i> @spec</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
