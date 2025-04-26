@@ -2,4 +2,41 @@
     ViewData["Title"] = "Trang chủ";
 }
 
-<h3>Home index</h3>
+<div class="container">
+    <div class="text-center my-5">
+        <h1 class="display-4">Chào mừng đến với Thư Quán N7</h1>
+        <p class="lead">Nơi cho thuê và cung cấp các thiết bị chất lượng!</p>
+    </div>
+
+    <div class="row text-center">
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Thuê thiết bị</h5>
+                    <p class="card-text">Tìm kiếm và thuê các thiết bị phục vụ nhu cầu học tập, nghiên cứu hoặc sự kiện.</p>
+                    <a asp-controller="Thue" asp-action="Index" class="btn btn-primary">Xem thiết bị</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Sản phẩm</h5>
+                    <p class="card-text">Khám phá các sản phẩm, tài liệu học tập được chia sẻ bởi cộng đồng.</p>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-success">Xem sản phẩm</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Chính sách & bảo mật</h5>
+                    <p class="card-text">Tìm hiểu về chính sách sử dụng và quyền riêng tư tại Thư Quán.</p>
+                    <a asp-controller="Home" asp-action="Privacy" class="btn btn-secondary">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
