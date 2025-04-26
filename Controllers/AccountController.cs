@@ -53,7 +53,7 @@ namespace ThuQuan.Controllers
             {
                 Users users = new Users()
                 {
-                    FullName = model.Name,
+                    FullName = $"{model.FirstName} {model.LastName}",
                     Email = model.Email,
                     UserName = model.Email
                 };

@@ -4,22 +4,28 @@ namespace ThuQuan.ViewModels
 {
     public class RegisterViewModel
     {   
-        [Required(ErrorMessage = "Name is required.")]
-        public string Name { get; set; }
+        [Required(ErrorMessage = "Trường này là bắt buộc")]
+        [Display(Name = "Họ")]
+        public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Email is required.")]
+        [Required(ErrorMessage = "Trường này là bắt buộc")]
+        [Display(Name = "Tên")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Email là bắt buộc.")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Password is required.")]
+        [Required(ErrorMessage = "Bắt buộc phải có mật khẩu.")]
         [StringLength(40, MinimumLength =8, ErrorMessage = "The {0} must be at {2} and at max {1} characters long.")]
         [DataType(DataType.Password)]
-        [Compare("ConfirmPassword", ErrorMessage = "Password does not match")]
+        [Display(Name = "Mật khẩu")]
+        [Compare("ConfirmPassword", ErrorMessage = "Mật khẩu không chính xác")]
         public string Password { get; set; }
         
-        [Required(ErrorMessage = "Confirm Password is required.")]       
+        [Required(ErrorMessage = "Mật khẩu nhập lại không khớp.")]       
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm Password")]
+        [Display(Name = "Nhập lại mật khẩu")]
          public string ConfirmPassword { get; set; }
     }
 }
