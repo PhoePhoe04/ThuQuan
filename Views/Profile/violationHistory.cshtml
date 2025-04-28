@@ -1,0 +1,305 @@
+@{
+    ViewData["Title"] = "Lịch sử vi phạm";
+}
+
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lịch sử vi phạm</title>
+    <style>
+        /* Reset và font chữ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .layout-violation{
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            padding-top: 50px;
+        }
+
+        .sideleft, .sideright{
+            flex: 1;
+        }
+        
+        .main-violation{
+            flex: 3;
+            padding: 20px;
+        }
+        
+        .rent-status-menu {
+            position: absolute;
+            top: 20px;
+            left: 20%;
+            width: 60%;
+            display: flex;
+            background-color: white;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            overflow-x: auto;
+            z-index: 10;
+            margin-top: 50px;
+        }
+        
+        .rent-status-menu a {
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #666;
+            white-space: nowrap;
+            font-size: 14px;
+            border-radius: 4px;
+            margin-right: 5px;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+
+        /* Bộ lọc */
+        .filter-section {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-item {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .filter-item.active {
+            background-color: #ffeee8;
+            border-color: #ee4d2d;
+            color: #ee4d2d;
+        }
+        
+        /* Danh sách vi phạm */
+        .violation-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .violation-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .violation-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+        
+        .violation-title {
+            font-weight: bold;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .violation-date {
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .violation-content {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .violation-image {
+            width: 100px;
+            height: 100px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .violation-details {
+            flex: 1;
+        }
+        
+        .violation-product {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .violation-type {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #ffeee8;
+            color: #ee4d2d;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .violation-description {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        .violation-status {
+            font-size: 13px;
+            color: #666;
+        }
+        
+        .status-pending {
+            color: #ff9500;
+        }
+        
+        .status-resolved {
+            color: #00bfa5;
+        }
+        
+        .status-rejected {
+            color: #ee4d2d;
+        }
+        
+        .violation-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .violation-penalty {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ee4d2d;
+        }
+        
+        .violation-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            background-color: white;
+            color: #555;
+        }
+        
+        .btn-primary {
+            background-color: #ee4d2d;
+            color: white;
+            border: none;
+        }
+        
+        .btn-outline {
+            border: 1px solid #ee4d2d;
+            color: #ee4d2d;
+            background-color: white;
+        }
+        
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .empty-icon {
+            font-size: 50px;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+        
+        .empty-text {
+            color: #666;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    @await Html.PartialAsync("_RentStatusMenu")
+    <div class="layout-violation">
+        <div class="sideleft" style="width: 20%;"></div>
+
+        <div class="main-violation" style="width: 60%;">
+            <div class="filter-section">
+                <div class="filter-item active" data-type="all">Tất cả</div>
+                <div class="filter-item" data-type="late">Trễ hạn</div>
+                <div class="filter-item" data-type="damaged">Hư hỏng</div>
+                <div class="filter-item" data-type="lost">Mất sản phẩm</div>
+                <div class="filter-item" data-type="not-maintained">Không bảo quản</div>
+                <div class="filter-item" data-type="other">Khác</div>
+            </div>
+            
+            <div class="violation-list">
+                @foreach (var item in Model.ViolationHistoryItems)
+                {
+                    <div class="violation-card" data-type="@item.Type" data-display-type="@item.Type">
+                        <div class="violation-header">
+                            <span class="violation-title">Vi phạm #@item.Code</span>
+                            <span class="violation-date">@item.Date.ToString("dd/MM/yyyy")</span>
+                        </div>
+
+                        <div class="violation-content">
+                            <img src="@item.ImageUrl" class="violation-image" alt="Sản phẩm" />
+                            <div class="violation-details">
+                                <div class="violation-product">@item.ProductName</div>
+                                <span class="violation-type">@item.Type</span>
+                                <p class="violation-description">@item.Description</p>
+                                <div class="violation-status @item.StatusClass">@item.StatusText</div>
+                            </div>
+                        </div>
+
+                        <div class="violation-footer">
+                            <div class="violation-penalty">@item.Penalty</div>
+                            <div class="violation-actions">
+                                <button class="btn">Xem chi tiết</button>
+                                @if (item.CanAppeal)
+                                {
+                                    <button class="btn btn-outline">Khiếu nại</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="sideright" style="width: 20%;"></div>
+    </div>
+    <script src="~/js/rentHistory.js"></script>
+</body>
+</html>
