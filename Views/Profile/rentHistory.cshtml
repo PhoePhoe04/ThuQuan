@@ -1,0 +1,275 @@
+@{
+    ViewData["Title"] = "Lịch sử thuê";
+}
+@model ThuQuan.ViewModels.RentHistoryViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lịch sử thuê sản phẩm</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .layout {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+            padding-top: 50px;
+        }
+
+        .sidebar-left, .sidebar-right{
+            flex: 1;
+        }
+        .main-content{
+            flex: 3;
+            padding: 20px;
+        }
+
+        .rent-status-menu {
+            position: absolute;
+            top: 20px;
+            left: 20%;
+            width: 60%;
+            display: flex;
+            background-color: white;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            overflow-x: auto;
+            z-index: 10;
+            margin-top: 50px;
+        }
+        
+        .rent-status-menu a {
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #666;
+            white-space: nowrap;
+            font-size: 14px;
+            border-radius: 4px;
+            margin-right: 5px;
+            position: relative;
+            z-index: 1;
+            transition: color 0.3s ease;
+        }
+        
+        /* Thanh tìm kiếm */
+        .search-bar {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        /* Danh sách đơn thuê */
+        .rent-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .rent-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .rent-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+        }
+        
+        .shop-name {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .rent-status {
+            color: #00bfa5;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .rent-items {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .rent-items img {
+            width: 80px;
+            height: 80px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .item-name {
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .item-variant {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .item-price {
+            font-size: 14px;
+            color: #ee4d2d;
+            font-weight: bold;
+        }
+        
+        .rent-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .rent-total {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .rent-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            background-color: white;
+            color: #555;
+        }
+
+        .btn:hover {
+            background-color: #cfc5c3;
+            color: white;
+        }
+
+        .btn-primary {
+            background-color: #ee4d2d;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #d43f15;
+        }
+
+        .btn-outline {
+            border: 1px solid #ee4d2d;
+            color: #ee4d2d;
+            background-color: white;
+        }
+
+        .btn-outline:hover {
+            background-color: #ee4d2d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    @await Html.PartialAsync("_RentStatusMenu")
+    <div class="tab-content">
+        <div id="rentHistory" class="tab-pane active">
+            <div class="layout">
+                <div class="sidebar-left" style="width: 20%;">
+                </div>
+                <div class="main-content" style="width: 60%;">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Tìm kiếm theo tên sản phẩm">
+                    </div>
+                    
+                    <div class="rent-list">
+                        @foreach (var history in Model.RentHistoryItems)
+                        {
+                            <div class="rent-card">
+                                <div class="rent-header">
+                                    <span class="shop-name">@history.ShopName</span>
+                                    <span class="rent-status">@history.Status</span>
+                                </div>
+                                
+                                <div class="rent-items">
+                                    @foreach (var item in history.RentItems)
+                                    {
+                                        <div class="item">
+                                            <img src="@item.ImageUrl" class="item-image" alt="Sản phẩm">
+                                            <div class="item-details">
+                                                <div class="item-name">@item.ProductName</div>
+                                                <div class="item-variant">@item.Variant</div>
+                                                <div class="item-price">@item.Price.ToString("C")</div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                                <div class="rent-footer">
+                                    <div class="rent-total">Thành tiền: @history.TotalAmount.ToString("C")</div>
+                                    <div class="rent-actions">
+                                        <button class="btn">Đánh giá</button>
+                                        <button class="btn">Liên hệ Người Bán</button>
+                                        <button class="btn btn-primary">Thuê lại</button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="sidebar-right" style="width: 20%;">
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    <script src="~/js/rentHistory.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+@{
+    var activeTab = ViewData["ActiveTab"]?.ToString() ?? "RentHistory";
+}
+
+<div class="rent-status-menu" id="rentMenu">
+    <a asp-controller="Profile" asp-action="RentHistory" 
+       class="@((activeTab == "RentHistory") ? "active" : "")" data-tab="0">
+       Lịch sử thuê hàng
+    </a>
+    <a asp-controller="Profile" asp-action="ViolationHistory" 
+       class="@((activeTab == "ViolationHistory") ? "active" : "")" data-tab="1">
+       Lịch sử vi phạm
+    </a>
+</div>
