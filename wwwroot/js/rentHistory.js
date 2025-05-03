@@ -79,10 +79,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const filterValue = filterMap[displayText] || displayText.toLowerCase();
         
         document.querySelectorAll('.violation-card').forEach(card => {
-            const cardType = card.dataset.type; // Lấy từ data-type ẩn
+            const cardFilterType = card.dataset.filterType;
             card.style.display = 
                 filterValue === 'all' || 
-                cardType === filterValue ? 'block' : 'none';
+                cardFilterType === filterValue ? 'block' : 'none';
         });
     }
     

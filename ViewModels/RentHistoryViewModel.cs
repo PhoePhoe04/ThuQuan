@@ -20,5 +20,7 @@ namespace ThuQuan.ViewModels
         public string Variant { get; set; }
         public decimal Price { get; set; }
         public string ImageUrl { get; set; }
+        public DateTime RentDate { get; set; } 
+        public DateTime ReturnDate { get; set; } 
     }
 }
