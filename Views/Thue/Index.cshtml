@@ -165,12 +165,37 @@
         
     </style>
 </head>
-<body>
-    <!-- Main Content -->
+
+    <style>
+        .intro-section {
+        background-color: #6c757d; /* Màu xám giống hình */
+        position: relative;
+        }
+        .intro-section h1 {
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-img-top {
+            object-fit: cover;
+            height: 200px;
+        }
+    </style>
+
+    <div class="container mt-4 mb-4">
+        <form class="d-flex justify-content-center">
+            <input class="form-control w-50" type="search" placeholder="Tìm kiếm thiết bị..." aria-label="Search">
+            <button class="btn btn-outline-success ms-2" type="submit">Tìm</button>
+        </form>
+    </div>
+
     <div class="container">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-lg-3 mb-4">
+            <!-- <div class="col-lg-3 mb-4">
                 <div class="sidebar">
                     <h5>Tìm kiếm</h5>
                     <div class="search-box">
@@ -185,7 +210,7 @@
                         <li><a href="#">Tài liệu</a></li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Product List -->
             <div class="col-lg-9">
@@ -194,7 +219,7 @@
                     <div class="col-md-4 mb-4">
                         <div class="product-card">
                             <div class="product-img">
-                                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg"" alt="Máy chiếu Epson" class="img-fluid">
+                                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg" alt="Máy chiếu Epson" class="img-fluid">
                             </div>
                             <div class="product-body">
                                 <h5 class="product-title">Máy chiếu Epson EB-982W</h5>
@@ -351,5 +376,5 @@
             </div>
         </div>
     </div>
-</body>
+
 </html>

@@ -8,33 +8,105 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ThuQuan.styles.css" asp-append-version="true" />
+    <style>
+        .bg-yellow { background-color:rgb(255, 255, 255); }
+        .navbar-brand img { height: 40px; }
+        .nav-link { color: #000 !important; }
+        .nav-link:hover { color: #FFF !important; }
+        .intro-section {
+        background-color: #6c757d; /* Màu xám giống hình */
+        position: relative;
+        }
+        .intro-section h1 {
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-img-top {
+            object-fit: cover;
+            height: 200px;
+        }
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5); /* Lớp phủ tối cho chữ dễ đọc */
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Thư Quán N7</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+        <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/">Thư Quán SGU</a>
+            <!-- Nút toggle cho màn hình nhỏ -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Các mục menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
-                        </li>
-                         <li class="nav-item"></li>
+                    </li>
+                    <li><a class="nav-link" href="#">Camera</a></li>
+                    <li><a class="nav-link" href="#">Máy chiếu</a></li>
+                    <li><a class="nav-link" href="#">Máy tính</a></li>
+                    <li><a class="nav-link" href="#">Dụng cụ</a></li>
+                    <li><a class="nav-link" href="#">Tài liệu</a></li>
+                    <li class="nav-item"></li>
                             <a class="nav-link text-dark" asp-controller="Product" asp-action="Index">Sản phẩm</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial"/>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
+                    </li>
+                </ul>
+                <!-- Đăng nhập và Giỏ hàng -->
+                <!-- <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Đăng nhập</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Giỏ hàng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Hồ Chí Minh</a></li>
+                </ul> -->
+                <partial name="_LoginPartial"/>
+            </div>
+        </div>
+    </nav>
+    </header>
+    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+
+        <!-- Các slide -->
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+                <div class="intro-section text-center text-white" style="background-color: #6c757d; padding: 100px 0; height: 400px;">
+                    <h1 class="display-3">THƯ QUÁN SGU</h1>
+                    <p class="lead">Chào mừng bạn đến với hệ thống thuê thiết bị</p>
                 </div>
             </div>
-        </nav>
-    </header>
+
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+                <img src="/images/banner.jpg" class="d-block w-100" alt="Slide 2" style="height: 400px; object-fit: cover;">
+            </div>
+        </div>
+
+    <!-- Nút điều khiển (trái/phải) -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
     <div>
         <main role="main" class="pb-3">
             @RenderBody()
