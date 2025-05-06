@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
+using CameraRental.Models;
 using Microsoft.AspNetCore.Mvc;
 using ThuQuan.Models;
+using ThuQuan.ViewModels;
+
 
 namespace ThuQuan.Controllers
 {

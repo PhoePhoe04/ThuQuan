@@ -94,19 +94,19 @@ namespace ThuQuan.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("ChangePassword", "Account", new {username = user.UserName});
+                    return RedirectToAction("ChangePassword", "Account", new {email = user.Email});
                 }
             }
             return View(model);
         }
 
-        public IActionResult ChangePassword(string username)
-        {
-            if(string.IsNullOrEmpty(username))
+        public IActionResult ChangePassword(string email)
+        {   
+            if(string.IsNullOrEmpty(email))
             {
                 return RedirectToAction("VerifyEmail", "Account");
             }
-            return View(new ChangePasswordViewModel{Email = username});
+            return View(new ChangePasswordViewModel{Email = email});
         }
 
         [HttpPost]

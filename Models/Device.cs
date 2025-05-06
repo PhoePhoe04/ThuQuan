@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ThuQuan.Models;
 
@@ -10,6 +11,12 @@ public class Device
 
     [Required]
     public required string Name { get; set; }
+
+    [Required]
+    public required double Price { get; set; }
+
+    [Required]
+    public required int Quantity { get; set; }
     
     public string? ImageUrl { get; set; }
 
@@ -17,7 +24,10 @@ public class Device
 
     public string? Status { get; set; }
 
-    // Foreign Key
+    // Foreign keys
     public int CategoryId { get; set; }
-    public Category? Category { get; set; }
+    [ForeignKey(nameof(CategoryId))]
+    public Category Category { get; set; } = null!;
+
+    // Navigation properties
 }

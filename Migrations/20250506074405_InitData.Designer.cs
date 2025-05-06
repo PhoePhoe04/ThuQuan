@@ -12,8 +12,8 @@ using ThuQuan.Data;
 namespace ThuQuan.Migrations
 {
     [DbContext(typeof(ThuQuanContext))]
-    [Migration("20250418194159_UsersFullName")]
-    partial class UsersFullName
+    [Migration("20250506074405_InitData")]
+    partial class InitData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -157,6 +157,45 @@ namespace ThuQuan.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("ThuQuan.Models.Borrow", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("BorrowTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("DeviceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ReturnTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("Total")
+                        .HasColumnType("double");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DeviceId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Borrows");
+                });
+
             modelBuilder.Entity("ThuQuan.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -194,6 +233,12 @@ namespace ThuQuan.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<string>("Status")
                         .HasColumnType("longtext");
@@ -273,6 +318,60 @@ namespace ThuQuan.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("ThuQuan.Models.Violation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("penalty")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Violations");
+                });
+
+            modelBuilder.Entity("ThuQuan.Models.ViolationDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("ViolationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("ViolationId");
+
+                    b.ToTable("ViolationDetails");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -324,10 +423,29 @@ namespace ThuQuan.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("ThuQuan.Models.Borrow", b =>
+                {
+                    b.HasOne("ThuQuan.Models.Device", "Device")
+                        .WithMany()
+                        .HasForeignKey("DeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ThuQuan.Models.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Device");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("ThuQuan.Models.Device", b =>
                 {
                     b.HasOne("ThuQuan.Models.Category", "Category")
-                        .WithMany("Devices")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -335,9 +453,23 @@ namespace ThuQuan.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("ThuQuan.Models.Category", b =>
+            modelBuilder.Entity("ThuQuan.Models.ViolationDetail", b =>
                 {
-                    b.Navigation("Devices");
+                    b.HasOne("ThuQuan.Models.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ThuQuan.Models.Violation", "Violation")
+                        .WithMany()
+                        .HasForeignKey("ViolationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+
+                    b.Navigation("Violation");
                 });
 #pragma warning restore 612, 618
         }
