@@ -8,8 +8,6 @@ namespace ThuQuan.ViewModels
 
     public class RentHistoryItem
     {
-        public string ShopName { get; set; }
-        public string Status { get; set; }
         public List<RentProductItem> RentItems { get; set; }
         public decimal TotalAmount { get; set; }
     }

@@ -1,5 +1,8 @@
+
 @{
     ViewData["Title"] = "Lịch sử vi phạm";
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+    ViewData["ActiveTab"] = "violationHistory";
 }
 
 
@@ -27,7 +30,6 @@
             display: flex;
             width: 100%;
             min-height: 100vh;
-            padding-top: 50px;
         }
 
         .sideleft, .sideright{
@@ -37,6 +39,7 @@
         .main-violation{
             flex: 3;
             padding: 20px;
+            
         }
         
         .rent-status-menu {
@@ -52,7 +55,6 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             overflow-x: auto;
             z-index: 10;
-            margin-top: 50px;
         }
         
         .rent-status-menu a {
@@ -250,11 +252,8 @@
     </style>
 </head>
 <body>
-    @await Html.PartialAsync("_RentStatusMenu")
     <div class="layout-violation">
-        <div class="sideleft" style="width: 20%;"></div>
-
-        <div class="main-violation" style="width: 60%;">
+        <div class="main-violation"x>
             <div class="filter-section">
                 <div class="filter-item active" data-type="all">Tất cả</div>
                 <div class="filter-item" data-type="late">Trễ hạn</div>
@@ -297,8 +296,6 @@
                 }
             </div>
         </div>
-
-        <div class="sideright" style="width: 20%;"></div>
     </div>
     <script src="~/js/rentHistory.js"></script>
 </body>
