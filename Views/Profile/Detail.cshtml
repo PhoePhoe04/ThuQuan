@@ -3,22 +3,19 @@
 
 @{
     ViewData["Title"] = "Thông tin cá nhân";
-    Layout="~/Views/Shared/_ProfileLayout.cshtml";
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
 }
 
-<div class="col-9 py-4">
-    <!-- Ví dụ hiển thị thông tin người dùng -->
-    <dl class="row">
-        <dt class="col-sm-3">Họ tên</dt>
-        <dd class="col-sm-9">@Model.FullName</dd> 
-    </dl>
-    <dl class="row">
-        <dt class="col-sm-3">Email</dt>
-        <dd class="col-sm-9">@Model.Email</dd> 
-    </dl>
-    <dl class="row">
-        <dt class="col-sm-3">UserName</dt>
-        <dd class="col-sm-9">@Model.UserName</dd> 
-    </dl>
-</div>
-
+<!-- Hiển thị thông tin người dùng -->
+<dl class="row">
+    <dt class="col-sm-3">Họ tên</dt>
+    <dd class="col-sm-9">@Model.FullName</dd> 
+</dl>
+<dl class="row">
+    <dt class="col-sm-3">Email</dt>
+    <dd class="col-sm-9">@Model.Email</dd> 
+</dl>
+<dl class="row">
+    <dt class="col-sm-3">UserName</dt>
+    <dd class="col-sm-9">@Model.UserName</dd> 
+</dl>
