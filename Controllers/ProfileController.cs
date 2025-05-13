@@ -77,37 +77,37 @@ namespace ThuQuan.Controllers
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
                             RentDate = new DateTime(2025, 4, 1),
                             ReturnDate = new DateTime(2025, 4, 3),
-                            Status = "Chờ thanh toán"
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
-                            Status = "Chờ thanh toán"
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
-                            Status = "Chờ thanh toán"
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
                             Status = "Đã thanh toán"
+                        },
+                        new RentProductItem
+                        {
+                            ProductName = "DJI Ronin-S",
+                            Variant = "Phân loại: Gimbal",
+                            Price = 897.296m,
+                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
+                            RentDate = new DateTime(2025, 4, 1),
+                            ReturnDate = new DateTime(2025, 4, 3),
+                            Status = "Chờ thanh toán"
+                        },
+                        new RentProductItem
+                        {
+                            ProductName = "DJI Ronin-S",
+                            Variant = "Phân loại: Gimbal",
+                            Price = 897.296m,
+                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
+                            RentDate = new DateTime(2025, 4, 1),
+                            ReturnDate = new DateTime(2025, 4, 3),
+                            Status = "Chờ thanh toán"
+                        },
+                        new RentProductItem
+                        {
+                            ProductName = "DJI Ronin-S",
+                            Variant = "Phân loại: Gimbal",
+                            Price = 897.296m,
+                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
+                            RentDate = new DateTime(2025, 4, 1),
+                            ReturnDate = new DateTime(2025, 4, 3),
+                            Status = "Trễ hạn"
                         },
                         new RentProductItem
                         {
