@@ -13,6 +13,7 @@ namespace YourProjectNamespace.Models
     {
         public string Code { get; set; }
         public DateTime Date { get; set; }
+        public TimeSpan TimeDate => Date.TimeOfDay;
         public string ImageUrl { get; set; }
         public string ProductName { get; set; }
         public string Type { get; set; }

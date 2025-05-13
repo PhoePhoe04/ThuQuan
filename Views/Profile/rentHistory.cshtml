@@ -259,8 +259,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td style="padding: 12px; border: 1px solid #ddd;">@item.RentDate.ToString("dd/MM/yyyy")</td>
-                                        <td style="padding: 12px; border: 1px solid #ddd;">@item.ReturnDate.ToString("dd/MM/yyyy")</td>
+                                        <td style="padding: 12px; border: 1px solid #ddd;">@item.RentDate.ToString("yyyy/MM/dd HH:mm:ss")</td>
+                                        <td style="padding: 12px; border: 1px solid #ddd;">@item.ReturnDate.ToString("yyyy/MM/dd HH:mm:ss")</td>
                                         <td style="padding: 12px; border: 1px solid #ddd;">@item.Price.ToString("C")</td>
                                         <td style="padding: 12px; border: 1px solid #ddd;">Đã thanh toán</td>
                                         <td style="padding: 12px; border: 1px solid #ddd;">
@@ -269,6 +269,9 @@
                                                 <span style="color: green; font-weight: bold;">@item.Status</span>
                                             }
                                             else if (item.Status == "Chờ thanh toán"){
+                                                <span style="color: orange; font-weight: bold;">@item.Status</span>
+                                            }
+                                            else if (item.Status == "Trễ hạn"){
                                                 <span style="color: red; font-weight: bold;">@item.Status</span>
                                             }
                                             else{
@@ -276,7 +279,7 @@
                                             }
                                         </td>
                                         <td style="padding: 12px; border: 1px solid #ddd;">
-                                            @if (item.Status != "Đã thanh toán"){
+                                            @if (item.Status != "Đã thanh toán" && item.Status != "Trễ hạn"){
                                                 <button class="btn">Thanh toán</button>
                                             }
 
