@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ThuQuan.Data;
+using ThuQuan.Models;
 using ThuQuan.ViewModels;
 
 namespace ThuQuan.Controllers
@@ -12,15 +13,51 @@ namespace ThuQuan.Controllers
         {
             _context = context;
         }
-       
+
+        // Thue/Index
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
             var viewModel = new ThueIndexViewModel
             {
-                Devices = await _context.Devices.ToListAsync(),
-                Categories = await _context.Categories.ToListAsync()
+                Devices = await _context.Devices.AsNoTracking().ToListAsync(),
+                Categories = await _context.Categories.AsNoTracking().ToListAsync()
             };
             return View(viewModel);
+        }
+
+        [HttpGet("Thue/Index/{categoryId?}")]
+        public async Task<IActionResult> Index(int? categoryId)
+        {
+            var devicesQuery = _context.Devices.AsQueryable();
+
+            if (categoryId.HasValue)
+            {
+                devicesQuery = devicesQuery.Where(d => d.CategoryId == categoryId.Value);
+            }
+
+            var viewModel = new ThueIndexViewModel
+            {
+                Devices = await devicesQuery.ToListAsync(),
+                Categories = await _context.Categories.ToListAsync()
+            };
+
+            return View("Index", viewModel);
+        }
+
+        // Thue/Details
+        public async Task<IActionResult> Details(int id)
+        {
+            var device = await _context.Devices
+                .Include(d => d.Category) // Nếu cần thông tin danh mục
+                .FirstOrDefaultAsync(d => d.Id == id);
+
+            if (device == null)
+            {
+                return NotFound();
+            }
+
+            return View(device);
         }
     }
 }

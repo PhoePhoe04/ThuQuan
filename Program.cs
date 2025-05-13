@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddSession();
+builder.Services.AddAntiforgery();
 
 builder.Services.AddDbContext<ThuQuanContext>(options =>
     options.UseMySql(
@@ -29,6 +31,8 @@ builder.Services.AddIdentity<Users, IdentityRole>(options =>
     .AddEntityFrameworkStores<ThuQuanContext>()
     .AddDefaultTokenProviders();
 
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,11 +45,17 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
+
+app.MapControllerRoute(
+    name: "categoryFilter",
+    pattern: "Thue/Index/{categoryId?}",
+    defaults: new { controller = "Thue", action = "Index" });
 
 app.MapControllerRoute(
     name: "default",

@@ -26,7 +26,7 @@ namespace ThuQuan.Controllers
         {
             if(ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
+                var result = await _signInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, false);
 
                 if(result.Succeeded)
                 {
@@ -53,9 +53,10 @@ namespace ThuQuan.Controllers
             {
                 Users users = new Users()
                 {
-                    FullName = $"{model.FirstName} {model.LastName}",
+                    FullName = $"{model.LastName} {model.FirstName} ",
                     Email = model.Email,
-                    UserName = model.Email
+                    UserName = model.UserName,
+                    CreatedAt = model.CreatedAt
                 };
 
                 var result = await _userManager.CreateAsync(users, model.Password);

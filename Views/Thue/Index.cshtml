@@ -1,5 +1,8 @@
-﻿@{
-    ViewData["Title"] = "Thuê  Sản Phẩm";
+
+﻿@using ThuQuan.ViewModels
+@model ThueIndexViewModel;
+@{
+    ViewData["Title"] = "Thuê thiết bị";
 }
 
 <!DOCTYPE html>
@@ -166,6 +169,7 @@
     </style>
 </head>
 
+
     <style>
         .intro-section {
         background-color: #6c757d; /* Màu xám giống hình */
@@ -183,179 +187,100 @@
             object-fit: cover;
             height: 200px;
         }
+
+        .product-img img {
+            width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng */
+            height: 200px; /* Đặt chiều cao cố định */
+            object-fit: cover; /* Cắt hình ảnh để vừa với khung mà không bị méo */
+            border-radius: 10px; /* Tùy chọn: bo góc hình ảnh */
+        }
     </style>
 
+    <!-- Thanh tìm kiếm -->
     <div class="container mt-4 mb-4">
         <form class="d-flex justify-content-center">
             <input class="form-control w-50" type="search" placeholder="Tìm kiếm thiết bị..." aria-label="Search">
             <button class="btn btn-outline-success ms-2" type="submit">Tìm</button>
         </form>
     </div>
-
+    
+    <!-- Nội dung chính -->
     <div class="container">
         <div class="row">
+            <!-- Sidebar -->
+             <div class="col-lg-3 mb-4">
+                <div class="sidebar">
+                    <h5>Tìm kiếm</h5>
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                    </div>
+                    <ul>
+                        <li>
+                            <a asp-controller="Thue" asp-action="Index" asp-route-categoryId="">Tất cả</a>
+                        </li>
+					@foreach (var category in Model.Categories)
+					{
+                        <li>
+                            <a asp-controller="Thue" asp-action="Index" asp-route-categoryId=@category.Id>@category.Name</a>
+                        </li>
+					}
+                    </ul>
+                </div>
+            </div> 
+
             <!-- Product List -->
             <div class="col-lg-12">
                 <div class="row">
-                    <!-- Product 1 -->
-                    <div class="col-md-3 mb-4">
-                        <div class="product-card">
-                            <div class="product-img">
-                                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg" alt="Máy chiếu Epson" class="img-fluid">
-                            </div>
-                            <div class="product-body">
-                                <h5 class="product-title">Máy chiếu Epson EB-982W</h5>
-                                <p class="product-tech"><strong>Công nghệ:</strong> LCD</p>
-                                <p class="product-spec">Độ phân giải: WXGA (1,280 x 800)</p>
-                                <p class="product-spec">Độ sáng: 4200 ANSI Lumens</p>
-                                <p class="product-spec">Độ tương phản: 16,000:1</p>
-                                <p class="product-spec">Zoom: 1.6X</p>
-                                <div class="action-buttons">
-                                    <button class="btn btn-favorite"><i class="far fa-heart"></i> Yêu thích</button>
-                                    <button class="btn btn-rent">Thuê</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Product 2 -->
-                    <div class="col-md-3 mb-4">
-                        <div class="product-card">
-                            <div class="product-img">
-                                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg"" alt="Máy chiếu Panasonic" class="img-fluid">
-                            </div>
-                            <div class="product-body">
-                                <h5 class="product-title">Máy chiếu Panasonic PT-LB423</h5>
-                                <p class="product-tech"><strong>Công nghệ:</strong> LCD</p>
-                                <p class="product-spec">Độ sáng: 4100 Ansi Lumens</p>
-                                <p class="product-spec">Độ phân giải: 1024x768 (XGA)</p>
-                                <p class="product-spec">Công suất bóng đèn: 250W UHM</p>
-                                <div class="action-buttons">
-                                    <button class="btn btn-favorite"><i class="far fa-heart"></i> Yêu thích</button>
-                                    <button class="btn btn-rent">Thuê</button>
+                    @foreach (var device in Model.Devices)
+                    {
+                        <div class="col-md-4 mb-4">
+                            <div class="product-card">
+                                <div class="product-img">
+                                    <img src="@device.ImageUrl" alt="@device.Name" class="product-img" />
+                                </div>
+                                <div class="product-body">
+                                    <h5 class="product-title">@device.Name</h5>
+                                    <p class="product-tech"><strong>Mô tả:</strong> @device.Description</p>
+                                    <p class="product-spec">Số lượng: @device.Quantity</p>
+                                    <p class="product-spec">Giá: @device.Price/ngày</p>
+                                    <p class="product-spec">Trạng thái: @device.Status</p>
+                                    <div class="action-buttons">
+                                        <form asp-controller="Cart" asp-action="AddToCart" method="post" style="display:inline;">
+                                            <input type="hidden" name="deviceId" value="@device.Id" />
+                                            <input type="hidden" name="name" value="@device.Name" />
+                                            <input type="hidden" name="price" value="@device.Price" />
+                                            <input type="hidden" name="imageUrl" value="@device.ImageUrl" />
+                                            <input type="hidden" name="quantity" value="1" />
+                                            <button type="submit" class="btn btn-rent">Thêm vào giỏ hàng</button>
+                                        </form>
+                                        <a asp-controller="Thue" asp-action="Details" asp-route-id="@device.Id" class="btn btn-favorite text-decoration-none text-black">Chi tiết</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="col-md-3 mb-4">
-                        <div class="product-card">
-                            <div class="product-img">
-                                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg"" alt="Máy chiếu Panasonic" class="img-fluid">
-                            </div>
-                            <div class="product-body">
-                                <h5 class="product-title">Máy chiếu Panasonic PT-LB423</h5>
-                                <p class="product-tech"><strong>Công nghệ:</strong> LCD</p>
-                                <p class="product-spec">Độ sáng: 4100 Ansi Lumens</p>
-                                <p class="product-spec">Độ phân giải: 1024x768 (XGA)</p>
-                                <p class="product-spec">Công suất bóng đèn: 250W UHM</p>
-                                <div class="action-buttons">
-                                    <button class="btn btn-favorite"><i class="far fa-heart"></i> Yêu thích</button>
-                                    <button class="btn btn-rent">Thuê</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="col-md-3 mb-4">
-                        <div class="product-card">
-                            <div class="product-img">
-                                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg"" alt="Máy chiếu Panasonic" class="img-fluid">
-                            </div>
-                            <div class="product-body">
-                                <h5 class="product-title">Máy chiếu Panasonic PT-LB423</h5>
-                                <p class="product-tech"><strong>Công nghệ:</strong> LCD</p>
-                                <p class="product-spec">Độ sáng: 4100 Ansi Lumens</p>
-                                <p class="product-spec">Độ phân giải: 1024x768 (XGA)</p>
-                                <p class="product-spec">Công suất bóng đèn: 250W UHM</p>
-                                <div class="action-buttons">
-                                    <button class="btn btn-favorite"><i class="far fa-heart"></i> Yêu thích</button>
-                                    <button class="btn btn-rent">Thuê</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="col-md-3 mb-4">
-                        <div class="product-card">
-                            <div class="product-img">
-                                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg"" alt="Máy chiếu Panasonic" class="img-fluid">
-                            </div>
-                            <div class="product-body">
-                                <h5 class="product-title">Máy chiếu Panasonic PT-LB423</h5>
-                                <p class="product-tech"><strong>Công nghệ:</strong> LCD</p>
-                                <p class="product-spec">Độ sáng: 4100 Ansi Lumens</p>
-                                <p class="product-spec">Độ phân giải: 1024x768 (XGA)</p>
-                                <p class="product-spec">Công suất bóng đèn: 250W UHM</p>
-                                <div class="action-buttons">
-                                    <button class="btn btn-favorite"><i class="far fa-heart"></i> Yêu thích</button>
-                                    <button class="btn btn-rent">Thuê</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="col-md-3 mb-4">
-                        <div class="product-card">
-                            <div class="product-img">
-                                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg"" alt="Máy chiếu Panasonic" class="img-fluid">
-                            </div>
-                            <div class="product-body">
-                                <h5 class="product-title">Máy chiếu Panasonic PT-LB423</h5>
-                                <p class="product-tech"><strong>Công nghệ:</strong> LCD</p>
-                                <p class="product-spec">Độ sáng: 4100 Ansi Lumens</p>
-                                <p class="product-spec">Độ phân giải: 1024x768 (XGA)</p>
-                                <p class="product-spec">Công suất bóng đèn: 250W UHM</p>
-                                <div class="action-buttons">
-                                    <button class="btn btn-favorite"><i class="far fa-heart"></i> Yêu thích</button>
-                                    <button class="btn btn-rent">Thuê</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 2 -->
-                    <div class="col-md-3 mb-4">
-                        <div class="product-card">
-                            <div class="product-img">
-                                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg"" alt="Máy chiếu Panasonic" class="img-fluid">
-                            </div>
-                            <div class="product-body">
-                                <h5 class="product-title">Máy chiếu Panasonic PT-LB423</h5>
-                                <p class="product-tech"><strong>Công nghệ:</strong> LCD</p>
-                                <p class="product-spec">Độ sáng: 4100 Ansi Lumens</p>
-                                <p class="product-spec">Độ phân giải: 1024x768 (XGA)</p>
-                                <p class="product-spec">Công suất bóng đèn: 250W UHM</p>
-                                <div class="action-buttons">
-                                    <button class="btn btn-favorite"><i class="far fa-heart"></i> Yêu thích</button>
-                                    <button class="btn btn-rent">Thuê</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Product 3 -->
-                    <div class="col-md-3 mb-4">
-                        <div class="product-card">
-                            <div class="product-img">
-                                <img src="https://shopmayvanphong.vn/wp-content/uploads/2021/02/canon-6030w.jpg"" alt="Máy chiếu Optoma" class="img-fluid">
-                            </div>
-                            <div class="product-body">
-                                <h5 class="product-title">Máy chiếu Optoma JXA511</h5>
-                                <p class="product-spec">Dòng máy chiếu Optoma JXA511 được thiết kế cho doanh nghiệp và giáo dục, cung cấp độ sáng 3800 lumens và chất lượng hình ảnh XGA.</p>
-                                <div class="action-buttons">
-                                    <button class="btn btn-favorite"><i class="far fa-heart"></i> Yêu thích</button>
-                                    <button class="btn btn-rent">Thuê</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
+                @if (TempData["CartMessage"] != null)
+                {
+                    <div id="cart-message" class="alert alert-success" style="position:fixed; top:20px; right:20px; z-index:9999;">
+                        @TempData["CartMessage"]
+                    </div>
+                }
             </div>
         </div>
     </div>
 </html>
+
+<script>
+    window.onload = function() {
+        var msg = document.getElementById('cart-message');
+        if (msg) {
+            setTimeout(function() {
+                msg.style.display = 'none';
+            }, 1000);
+        }
+    };
+</script>
+
