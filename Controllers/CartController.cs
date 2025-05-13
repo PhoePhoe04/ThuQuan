@@ -25,7 +25,7 @@ namespace ThuQuan.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult AddToCart(int deviceId, string name, double price, string imageUrl, int quantity)
+        public IActionResult AddToCart(string deviceId, string name, double price, string imageUrl, int quantity)
         {
             var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>(CartSessionKey) ?? new List<CartItem>();
 
@@ -55,7 +55,7 @@ namespace ThuQuan.Controllers
 
 
         [HttpPost]
-        public IActionResult RemoveFromCart(int deviceId)
+        public IActionResult RemoveFromCart(string deviceId)
         {
             var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>(CartSessionKey) ?? new List<CartItem>();
             var itemToRemove = cart.Find(c => c.DeviceId == deviceId);
@@ -71,7 +71,7 @@ namespace ThuQuan.Controllers
         public IActionResult UpdateQuantity([FromBody] UpdateQuantityRequest request)
         {
             var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>(CartSessionKey) ?? new List<CartItem>();
-            var item = cart.FirstOrDefault(c => c.DeviceId == request.DeviceId);
+            var item = cart.FirstOrDefault(c => int.Parse(c.DeviceId) == request.DeviceId);
             if (item != null)
             {
                 if (request.Quantity > 0)
@@ -106,10 +106,10 @@ namespace ThuQuan.Controllers
             var now = DateTime.Now;
             var borrow = new Borrow
             {
-                DeviceId = request.DeviceId,
+                DeviceId = int.Parse(request.DeviceId),
                 UserId = userId,
                 Quantity = request.Quantity,
-                Total = request.Total,
+                Total = (double)request.Total,
                 BorrowTime = now,
                 ReturnTime = now.AddDays(request.Days),
                 Status = "Đang xử lý"
@@ -131,13 +131,58 @@ namespace ThuQuan.Controllers
             return Ok();
         }
 
-        public class BorrowRequest
-        {
-            public int DeviceId { get; set; }
-            public int Quantity { get; set; }
-            public int Days { get; set; }
-            public double Total { get; set; }
-        }
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Borrow([FromBody] BorrowRequest request)
+        // {
+        //     // Kiểm tra request
+        //     if (request == null || string.IsNullOrEmpty(request.DeviceId))
+        //     {
+        //         return BadRequest("Dữ liệu không hợp lệ.");
+        //     }
+
+        //     // Lấy userId hiện tại
+        //     var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        //     if (string.IsNullOrEmpty(userId))
+        //     {
+        //         return Unauthorized();
+        //     }
+
+        //     // Tạo đối tượng Borrow
+        //     var now = DateTime.Now;
+        //     var borrow = new Borrow
+        //     {
+        //         DeviceId = request.DeviceId,
+        //         UserId = userId,
+        //         Quantity = request.Quantity,
+        //         Total = request.Total,
+        //         BorrowTime = now,
+        //         ReturnTime = now.AddDays(request.Days),
+        //         Status = "Đang xử lý"
+        //     };
+
+        //     // Lưu vào database
+        //     try
+        //     {
+        //         _context.Borrows.Add(borrow);
+        //         await _context.SaveChangesAsync();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return StatusCode(500, $"Lỗi khi lưu vào database: {ex.Message}");
+        //     }
+
+        //     // Xóa item khỏi giỏ hàng trong session
+        //     var cart = HttpContext.Session.GetObjectFromJson<List<CartItem>>(CartSessionKey) ?? new List<CartItem>();
+        //     var itemToRemove = cart.FirstOrDefault(c => c.DeviceId == request.DeviceId);
+        //     if (itemToRemove != null)
+        //     {
+        //         cart.Remove(itemToRemove);
+        //         HttpContext.Session.SetObjectAsJson(CartSessionKey, cart);
+        //     }
+
+        //     return Ok();
+        // }
 
     }
 }
