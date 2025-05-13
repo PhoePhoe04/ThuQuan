@@ -3,14 +3,17 @@ using System.ComponentModel.DataAnnotations;
 namespace ThuQuan.ViewModels
 {
     public class RegisterViewModel
-    {   
+    {
         [Required(ErrorMessage = "Trường này là bắt buộc")]
         [Display(Name = "Họ")]
         public string LastName { get; set; }
-
         [Required(ErrorMessage = "Trường này là bắt buộc")]
         [Display(Name = "Tên")]
         public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "UserName là bắt buộc.")]
+        public string UserName { get; set; }
+
 
         [Required(ErrorMessage = "Email là bắt buộc.")]
         [EmailAddress]
@@ -27,5 +30,7 @@ namespace ThuQuan.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Nhập lại mật khẩu")]
          public string ConfirmPassword { get; set; }
+
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

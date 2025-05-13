@@ -29,7 +29,8 @@ namespace ThuQuan.Controllers
             {
                 FullName = user.FullName,
                 Email = user.Email,
-                UserName = user.UserName
+                UserName = user.UserName,
+                CreatedAt = user.CreatedAt.ToString("dd/MM/yyyy HH:mm:ss")
             };
 
             return View(model);
