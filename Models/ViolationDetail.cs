@@ -17,13 +17,17 @@ namespace ThuQuan.Models
         //Foreign Key   
         [Required]
         public string UserId { get; set; }
-        [Required]
-        public int ViolationId { get; set; }
-
-        //Navigation Property
         [ForeignKey(nameof(UserId))]
         public Users User { get; set; } = null!;
+
+        [Required]
+        public int ViolationId { get; set; }
         [ForeignKey(nameof(ViolationId))]
-        public Violation Violation { get; set; } = null!;
+        public Violation Violation { get; set; } = null!;        
+        
+        [Required]
+        public int DeviceId { get; set; }
+        [ForeignKey(nameof(DeviceId))]
+        public Device Device { get; set; } = null!;
     }
 }

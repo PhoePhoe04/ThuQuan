@@ -1,25 +1,17 @@
 using System;
-using System.Collections.Generic;
 
-namespace YourProjectNamespace.Models
+namespace ThuQuan.ViewModels;
+
+
+public class ViolationHistoryViewModel
 {
-    public class ViolationHistoryViewModel
-    {
-        // Chứa danh sách các vi phạm
-        public List<ViolationHistoryItem> ViolationHistoryItems { get; set; }
-    }
-
-    public class ViolationHistoryItem
-    {
-        public string Code { get; set; }
-        public DateTime Date { get; set; }
-        public TimeSpan TimeDate => Date.TimeOfDay;
-        public string ImageUrl { get; set; }
-        public string ProductName { get; set; }
-        public string Type { get; set; }
-        public string Description { get; set; }
-        public string StatusText { get; set; }
-        public string StatusClass { get; set; }
-        public bool CanAppeal { get; set; }
-    }
+    public string UserId { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string ImageUrl { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public string DeviceName { get; set; }
+    public string Description { get; set; }
+    public string Penalty { get; set; }
+    public string Status { get; set; }
 }

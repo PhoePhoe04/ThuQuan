@@ -1,4 +1,4 @@
-
+﻿
 ﻿@using ThuQuan.ViewModels
 @model ThueIndexViewModel;
 @{
@@ -208,7 +208,7 @@
     <div class="container">
         <div class="row">
             <!-- Sidebar -->
-             <div class="col-lg-3 mb-4">
+             <div class="col-lg-3">
                 <div class="sidebar">
                     <h5>Tìm kiếm</h5>
                     <div class="search-box">
@@ -230,9 +230,8 @@
             </div> 
 
             <!-- Product List -->
-            <div class="col-lg-12">
+            <div class="col-lg-9">
                 <div class="row">
-
                     @foreach (var device in Model.Devices)
                     {
                         <div class="col-md-4 mb-4">
