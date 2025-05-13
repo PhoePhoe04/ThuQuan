@@ -5,7 +5,13 @@
 <ul class="navbar-nav ms-auto">
     @if(signInManager.IsSignedIn(User))
     {
-        <li class="nav-item dropdown">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Cart">Giỏ hàng</a>
+                    </li>
+                </ul>
+            </div>
             <a class="nav-link dropdown-toggle text-dark" href="#" id="userDropdown" role="button"
                data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bi bi-person-circle"></i> @User.Identity?.Name
@@ -15,7 +21,6 @@
                 <li><a class="dropdown-item" asp-controller="Profile" asp-action="Detail">Profile</a></li>
                 <li><a class="dropdown-item" asp-controller="Account" asp-action="Logout">Logout</a></li>
             </ul>
-        </li>
     }
     else
     {

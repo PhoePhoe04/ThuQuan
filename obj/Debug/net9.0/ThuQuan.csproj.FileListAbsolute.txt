@@ -374,4 +374,8 @@ C:\Na\C#\ThuQuan\obj\Debug\net9.0\refint\ThuQuan.dll
 C:\Na\C#\ThuQuan\obj\Debug\net9.0\ThuQuan.pdb
 C:\Na\C#\ThuQuan\obj\Debug\net9.0\ThuQuan.genruntimeconfig.cache
 C:\Na\C#\ThuQuan\obj\Debug\net9.0\ref\ThuQuan.dll
-C:\Na\C#\ThuQuan\obj\Debug\net9.0\compressed\x6isk193x1-mg0yi6ge8h.gz
+C:\Na\C#\ThuQuan\bin\Debug\net9.0\package-lock.json
+C:\Na\C#\ThuQuan\bin\Debug\net9.0\package.json
+C:\Na\C#\ThuQuan\obj\Debug\net9.0\compressed\hbkawg1sdf-999f9owvh3.gz
+C:\Na\C#\ThuQuan\obj\Debug\net9.0\compressed\aydwlvta73-9tddw1drfa.gz
+C:\Na\C#\ThuQuan\obj\Debug\net9.0\compressed\x6isk193x1-tvttg5tbwo.gz

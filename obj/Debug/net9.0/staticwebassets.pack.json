@@ -5,12 +5,28 @@
       "PackagePath": "staticwebassets\\ThuQuan.hhpu68qpvu.bundle.scp.css"
     },
     {
+      "Id": "C:\\Na\\C#\\ThuQuan\\wwwroot\\css\\account.css",
+      "PackagePath": "staticwebassets\\css\\account.css"
+    },
+    {
       "Id": "C:\\Na\\C#\\ThuQuan\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Na\\C#\\ThuQuan\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Na\\C#\\ThuQuan\\wwwroot\\images\\account-bg.jpg",
+      "PackagePath": "staticwebassets\\images\\account-bg.jpg"
+    },
+    {
+      "Id": "C:\\Na\\C#\\ThuQuan\\wwwroot\\images\\banner.jpg",
+      "PackagePath": "staticwebassets\\images\\banner.jpg"
+    },
+    {
+      "Id": "C:\\Na\\C#\\ThuQuan\\wwwroot\\js\\rentHistory.js",
+      "PackagePath": "staticwebassets\\js\\rentHistory.js"
     },
     {
       "Id": "C:\\Na\\C#\\ThuQuan\\wwwroot\\js\\site.js",

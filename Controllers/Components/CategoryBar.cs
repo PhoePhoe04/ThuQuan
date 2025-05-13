@@ -1,20 +1,22 @@
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ThuQuan.Data;
+using ThuQuan.Services;
 
 namespace ThuQuan.Controllers.Components
 {
     public class CategoryBar : ViewComponent
     {
-        private readonly ThuQuanContext _context;
-        public CategoryBar(ThuQuanContext context)
+        private readonly IProductService _productService;
+
+        public CategoryBar(IProductService productService)
         {
-            _context = context;
+            _productService = productService;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync()
+        public async Task<IViewComponentResult> InvokeAsync(int? selectedCategoryId = null)
         {
-            var categories = await _context.Categories.ToListAsync();
+            var categories = await _productService.GetAllCategoriesAsync();
+            ViewBag.SelectedCategoryId = selectedCategoryId;
             return View(categories);
         }
     }

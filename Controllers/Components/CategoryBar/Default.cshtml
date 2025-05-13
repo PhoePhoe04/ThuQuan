@@ -1,0 +1,21 @@
+@model IEnumerable<ThuQuan.Models.Category>
+
+<div class="sidebar mb-4">
+    <h5>Danh mục</h5>
+    <ul>
+        <li>
+            <a href="@Url.Action("Index", "Product")" class="@(ViewBag.SelectedCategoryId == null ? "text-danger" : "")">
+                Tất cả sản phẩm
+            </a>
+        </li>
+        @foreach (var category in Model)
+        {
+            <li>
+                <a href="@Url.Action("Index", "Product", new { categoryId = category.Id })" 
+                   class="@(ViewBag.SelectedCategoryId == category.Id ? "text-danger" : "")">
+                    @category.Name
+                </a>
+            </li>
+        }
+    </ul>
+</div>
