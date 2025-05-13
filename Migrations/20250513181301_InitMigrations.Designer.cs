@@ -12,8 +12,8 @@ using ThuQuan.Data;
 namespace ThuQuan.Migrations
 {
     [DbContext(typeof(ThuQuanContext))]
-    [Migration("20250506074405_InitData")]
-    partial class InitData
+    [Migration("20250513181301_InitMigrations")]
+    partial class InitMigrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -262,6 +262,9 @@ namespace ThuQuan.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("longtext");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("varchar(256)");
@@ -333,7 +336,7 @@ namespace ThuQuan.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("penalty")
+                    b.Property<string>("Penalty")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -352,6 +355,9 @@ namespace ThuQuan.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("DeviceId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -364,6 +370,8 @@ namespace ThuQuan.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DeviceId");
 
                     b.HasIndex("UserId");
 
@@ -455,6 +463,12 @@ namespace ThuQuan.Migrations
 
             modelBuilder.Entity("ThuQuan.Models.ViolationDetail", b =>
                 {
+                    b.HasOne("ThuQuan.Models.Device", "Device")
+                        .WithMany()
+                        .HasForeignKey("DeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ThuQuan.Models.Users", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -466,6 +480,8 @@ namespace ThuQuan.Migrations
                         .HasForeignKey("ViolationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Device");
 
                     b.Navigation("User");
 
