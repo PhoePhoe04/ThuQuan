@@ -46,25 +46,8 @@ namespace ThuQuan.Controllers
 
             ViewData["ActiveTab"] = "RentHistory";
 
-            // Giả sử bạn có một nguồn dữ liệu về lịch sử thuê (ví dụ: từ database)
             var rentHistoryItems = new List<RentHistoryItem>
             {
-                new RentHistoryItem
-                    {
-                        RentItems = new List<RentProductItem>
-                        {
-                            new RentProductItem
-                            {
-                                ProductName = "Canon EOS C200",
-                                Variant = "Phân loại: Máy ảnh",
-                                Price = 825.200m,
-                                ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                                RentDate = new DateTime(2025, 4, 1),
-                                ReturnDate = new DateTime(2025, 4, 3),
-                                Status = "Đã thanh toán"
-                            }
-                        },
-                    },
                 new RentHistoryItem
                 {
                     RentItems = new List<RentProductItem>
@@ -75,8 +58,8 @@ namespace ThuQuan.Controllers
                             Variant = "Phân loại: Gimbal",
                             Price = 897.296m,
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
+                            RentDate = new DateTime(2025, 4, 1, 9, 0, 0),
+                            ReturnDate = new DateTime(2025, 4, 3, 18, 0, 0),
                             Status = "Đã thanh toán"
                         },
                         new RentProductItem
@@ -85,8 +68,8 @@ namespace ThuQuan.Controllers
                             Variant = "Phân loại: Gimbal",
                             Price = 897.296m,
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
+                            RentDate = new DateTime(2025, 4, 1, 9, 0, 0),
+                            ReturnDate = new DateTime(2025, 4, 3, 18, 0, 0),
                             Status = "Chờ thanh toán"
                         },
                         new RentProductItem
@@ -95,8 +78,8 @@ namespace ThuQuan.Controllers
                             Variant = "Phân loại: Gimbal",
                             Price = 897.296m,
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
+                            RentDate = new DateTime(2025, 4, 1, 9, 0, 0),
+                            ReturnDate = new DateTime(2025, 4, 3, 18, 0, 0),
                             Status = "Chờ thanh toán"
                         },
                         new RentProductItem
@@ -105,8 +88,8 @@ namespace ThuQuan.Controllers
                             Variant = "Phân loại: Gimbal",
                             Price = 897.296m,
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
+                            RentDate = new DateTime(2025, 4, 1, 9, 0, 0),
+                            ReturnDate = new DateTime(2025, 4, 3, 18, 0, 0),
                             Status = "Trễ hạn"
                         },
                         new RentProductItem
@@ -115,8 +98,8 @@ namespace ThuQuan.Controllers
                             Variant = "Phân loại: Gimbal",
                             Price = 897.296m,
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
+                            RentDate = new DateTime(2025, 4, 1, 9, 0, 0),
+                            ReturnDate = new DateTime(2025, 4, 3, 18, 0, 0),
                             Status = "Đã thanh toán"
                         }
                     },
@@ -150,7 +133,7 @@ namespace ThuQuan.Controllers
                 new ViolationHistoryItem
                 {
                     Code = "V123",
-                    Date = DateTime.Now,
+                    Date = new DateTime(2025, 4, 1, 9, 0, 0),
                     ProductName = "Camera Canon",
                     Type = "Hư hỏng",
                     Description = "Máy ảnh bị vỡ màn hình.",
@@ -162,7 +145,7 @@ namespace ThuQuan.Controllers
                 new ViolationHistoryItem
                 {
                     Code = "V124",
-                    Date = DateTime.Now.AddDays(-1),
+                    Date = new DateTime(2025, 4, 1, 9, 0, 0),
                     ProductName = "Sony A7",
                     Type = "Mất sản phẩm",
                     Description = "Sản phẩm bị mất khi giao hàng.",
@@ -178,6 +161,47 @@ namespace ThuQuan.Controllers
                 ViolationHistoryItems = violationHistoryItems
             };
 
+            return View(model);
+        }
+
+        [HttpGet("bookingHistory")]
+        public async Task<IActionResult> BookingHistory()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            ViewData["ActiveTab"] = "BookingHistory";
+            var bookingHistoryItems = new List<BookingHistoryItem>
+            {
+                new BookingHistoryItem
+                {
+                    BookedRooms = new List<BookedRoom>
+                    {
+                        new BookedRoom
+                        {
+                            RoomName = "Phòng Studio VIP",
+                            ImageUrl = "https://example.com/room1.jpg",
+                            BookingDate = new DateTime(2025, 5, 1, 14, 30, 0),
+                            Status = "Đã xử lý",
+                            DeviceName = "Micro AKG Pro"
+                        },
+                        new BookedRoom
+                        {
+                            RoomName = "Phòng Hội Nghị 2A",
+                            ImageUrl = "https://example.com/room2.jpg",
+                            BookingDate = new DateTime(2025, 5, 2, 9, 0, 0),
+                            Status = "Đang xử lý",
+                            DeviceName = "Máy chiếu Panasonic"
+                        }
+                    }
+                }
+            };
+            var model = new BookingHistoryViewModel
+            {
+                BookingHistoryItems = bookingHistoryItems
+            };
             return View(model);
         }
     }
