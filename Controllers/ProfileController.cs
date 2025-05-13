@@ -147,5 +147,46 @@ namespace ThuQuan.Controllers
             
             return View("violationHistory", violationDetails);
         }
+
+        [HttpGet("bookingHistory")]
+        public async Task<IActionResult> BookingHistory()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            ViewData["ActiveTab"] = "BookingHistory";
+            var bookingHistoryItems = new List<BookingHistoryItem>
+            {
+                new BookingHistoryItem
+                {
+                    BookedRooms = new List<BookedRoom>
+                    {
+                        new BookedRoom
+                        {
+                            RoomName = "Phòng Studio VIP",
+                            ImageUrl = "https://example.com/room1.jpg",
+                            BookingDate = new DateTime(2025, 5, 1, 14, 30, 0),
+                            Status = "Đã xử lý",
+                            DeviceName = "Micro AKG Pro"
+                        },
+                        new BookedRoom
+                        {
+                            RoomName = "Phòng Hội Nghị 2A",
+                            ImageUrl = "https://example.com/room2.jpg",
+                            BookingDate = new DateTime(2025, 5, 2, 9, 0, 0),
+                            Status = "Đang xử lý",
+                            DeviceName = "Máy chiếu Panasonic"
+                        }
+                    }
+                }
+            };
+            var model = new BookingHistoryViewModel
+            {
+                BookingHistoryItems = bookingHistoryItems
+            };
+            return View(model);
+        }
     }
 }

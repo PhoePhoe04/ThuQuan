@@ -293,6 +293,7 @@
                                         @if (item.Status == "Chờ thanh toán")
                                         {
                                             <form  asp-controller="Profile" asp-action="ThanhToan" asp-route-id="@item.Id">
+
                                                 <button class="btn">Thanh toán</button>
                                             </form>
                                         }

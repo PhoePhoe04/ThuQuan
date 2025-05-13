@@ -1,0 +1,62 @@
+@model ThuQuan.ViewModels.BookingHistoryViewModel
+
+@{
+    ViewData["Title"] = "Lịch sử đặt phòng";
+    Layout = "~/Views/Shared/_ProfileLayout.cshtml";
+    ViewData["ActiveTab"] = "BookingHistory";
+}
+
+<h2>Lịch sử đặt phòng</h2>
+
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        <tr style="background-color: #f2f2f2;">
+            <th style="padding: 12px; border: 1px solid #ddd;">STT</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Ảnh</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Tên phòng</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Ngày thuê</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Trạng thái</th>
+            <th style="padding: 12px; border: 1px solid #ddd;">Tên thiết bị</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.BookingHistoryItems != null && Model.BookingHistoryItems.Any())
+        {
+            var stt = 1;
+            foreach (var item in Model.BookingHistoryItems)
+            {
+                foreach (var room in item.BookedRooms)
+                {
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #ddd;">@stt</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">
+                            <img src="@room.ImageUrl" alt="Ảnh phòng" style="width: 80px; height: auto;" />
+                        </td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">@room.RoomName</td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">
+                            @room.BookingDate.ToString("dd/MM/yyyy") @room.TimeBooking.ToString(@"hh\:mm\:ss")
+                        </td>
+                        <td style="padding: 12px; border: 1px solid #ddd;">
+                            @if (room.Status == "Đã xử lý"){
+                                <span style="color: green; font-weight: bold;">@room.Status</span>
+                            }else if (room.Status == "Đang xử lý"){
+                                <span style="color: orange; font-weight: bold;">@room.Status</span>
+                            }else{
+                                <span>@room.Status</span>
+                            }
+                        </td>
+
+                        <td style="padding: 12px; border: 1px solid #ddd;">@room.DeviceName</td>
+                    </tr>
+                    stt++;
+                }
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" style="padding: 12px; border: 1px solid #ddd; text-align: center;">Không có dữ liệu đặt phòng</td>
+            </tr>
+        }
+    </tbody>
+</table>

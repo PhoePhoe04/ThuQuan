@@ -9,12 +9,48 @@ namespace ThuQuan.Controllers
         {
             var rooms = new List<RoomViewModel>
             {
-                new RoomViewModel { RoomName = "Phòng A", ImageRoom = "/images/room-a.jpg" },
-                new RoomViewModel { RoomName = "Phòng B", ImageRoom = "/images/room-b.jpg" },
-                new RoomViewModel { RoomName = "Phòng C", ImageRoom = "/images/room-c.jpg" },
-                new RoomViewModel { RoomName = "Phòng D", ImageRoom = "/images/room-d.jpg" },
-                new RoomViewModel { RoomName = "Phòng E", ImageRoom = "/images/room-e.jpg" },
-                new RoomViewModel { RoomName = "Phòng F", ImageRoom = "/images/room-f.jpg" }
+                new RoomViewModel
+                {
+                    RoomName = "Phòng A",
+                    ImageRoom = "/images/room-a.jpg",
+                    OpenTime = new TimeSpan(8, 0, 0),
+                    CloseTime = new TimeSpan(17, 0, 0)
+                },
+                new RoomViewModel
+                {
+                    RoomName = "Phòng B",
+                    ImageRoom = "/images/room-b.jpg",
+                    OpenTime = new TimeSpan(8, 0, 0),
+                    CloseTime = new TimeSpan(17, 0, 0)
+                },
+                new RoomViewModel
+                {
+                    RoomName = "Phòng C",
+                    ImageRoom = "/images/room-c.jpg",
+                    OpenTime = new TimeSpan(8, 0, 0),
+                    CloseTime = new TimeSpan(17, 0, 0)
+                },
+                new RoomViewModel
+                {
+                    RoomName = "Phòng D",
+                    ImageRoom = "/images/room-d.jpg",
+                    OpenTime = new TimeSpan(8, 0, 0),
+                    CloseTime = new TimeSpan(17, 0, 0)
+                },
+                new RoomViewModel
+                {
+                    RoomName = "Phòng E",
+                    ImageRoom = "/images/room-e.jpg",
+                    OpenTime = new TimeSpan(8, 0, 0),
+                    CloseTime = new TimeSpan(17, 0, 0)
+                },
+                new RoomViewModel
+                {
+                    RoomName = "Phòng F",
+                    ImageRoom = "/images/room-f.jpg",
+                    OpenTime = new TimeSpan(8, 0, 0),
+                    CloseTime = new TimeSpan(17, 0, 0)
+                }
             };
 
             var model = new BookingViewModel

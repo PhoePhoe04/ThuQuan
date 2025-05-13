@@ -4,6 +4,7 @@ namespace ThuQuan.ViewModels
     {
         public string RoomName { get; set; }
         public string ImageRoom { get; set; }
+        public TimeSpan OpenTime { get; set; }
+        public TimeSpan CloseTime { get; set; }
     }
 }
-

@@ -2,6 +2,7 @@ using System;
 
 namespace ThuQuan.ViewModels;
 
+
 public class ViolationHistoryViewModel
 {
     public string UserId { get; set; }
