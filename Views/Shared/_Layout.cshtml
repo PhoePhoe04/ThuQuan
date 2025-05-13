@@ -12,7 +12,7 @@
         .bg-yellow { background-color:rgb(255, 255, 255); }
         .navbar-brand img { height: 40px; }
         .nav-link { color: #000 !important; }
-        .nav-link:hover { color: #FFF !important; }
+        .nav-link:hover { color: #0026ff !important; }
         .intro-section {
         background-color: #6c757d; /* Màu xám giống hình */
         position: relative;
@@ -50,7 +50,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li><a class="nav-link" href="#">Camera</a></li>
                     <li><a class="nav-link" href="#">Máy chiếu</a></li>
@@ -58,10 +58,13 @@
                     <li><a class="nav-link" href="#">Dụng cụ</a></li>
                     <li><a class="nav-link" href="#">Tài liệu</a></li>
                     <li class="nav-item"></li>
-                            <a class="nav-link text-dark" asp-controller="Product" asp-action="Index">Sản phẩm</a>
+                        <a class="nav-link text-dark" asp-controller="Product" asp-action="Index">Sản phẩm</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
+                        <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-dark" asp-controller="Booking" asp-action="Index">Đặt chỗ</a>
                     </li>
                 </ul>
                 <!-- Đăng nhập và Giỏ hàng -->
