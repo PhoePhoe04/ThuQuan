@@ -234,6 +234,7 @@
                                 <th style="padding: 12px; border: 1px solid #ddd;">Ngày thuê</th>
                                 <th style="padding: 12px; border: 1px solid #ddd;">Ngày trả</th>
                                 <th style="padding: 12px; border: 1px solid #ddd;">Tổng tiền</th>
+                                <th style="padding: 12px; border: 1px solid #ddd;">Trạng thái</th>
                                 <th style="padding: 12px; border: 1px solid #ddd;">Hành động</th>
                             </tr>
                         </thead>
@@ -260,8 +261,20 @@
                                         <td style="padding: 12px; border: 1px solid #ddd;">@item.ReturnDate.ToString("dd/MM/yyyy")</td>
                                         <td style="padding: 12px; border: 1px solid #ddd;">@item.Price.ToString("C")</td>
                                         <td style="padding: 12px; border: 1px solid #ddd;">
-                                            <button class="btn">Đánh giá</button>
-                                            <button class="btn">Liên hệ</button>
+                                            @if (item.Status == "Đã thanh toán"){
+                                                <span style="color: green; font-weight: bold;">@item.Status</span>
+                                            }
+                                            else if (item.Status == "Chờ thanh toán"){
+                                                <span style="color: red; font-weight: bold;">@item.Status</span>
+                                            }
+                                            else{
+                                                <span>@item.Status</span>
+                                            }
+                                        </td>
+                                        <td style="padding: 12px; border: 1px solid #ddd;">
+                                            @if (item.Status != "Đã thanh toán"){
+                                                <button class="btn">Thanh toán</button>
+                                            }
                                             <button class="btn btn-primary">Thuê lại</button>
                                         </td>
                                     </tr>

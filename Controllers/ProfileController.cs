@@ -60,10 +60,10 @@ namespace ThuQuan.Controllers
                                 Price = 825.200m,
                                 ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
                                 RentDate = new DateTime(2025, 4, 1),
-                                ReturnDate = new DateTime(2025, 4, 3)
+                                ReturnDate = new DateTime(2025, 4, 3),
+                                Status = "Đã thanh toán"
                             }
                         },
-                        TotalAmount = 825.200m
                     },
                 new RentHistoryItem
                 {
@@ -76,7 +76,8 @@ namespace ThuQuan.Controllers
                             Price = 897.296m,
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
                             RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
+                            ReturnDate = new DateTime(2025, 4, 3),
+                            Status = "Chờ thanh toán"
                         },
                         new RentProductItem
                         {
@@ -85,7 +86,8 @@ namespace ThuQuan.Controllers
                             Price = 897.296m,
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
                             RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
+                            ReturnDate = new DateTime(2025, 4, 3),
+                            Status = "Chờ thanh toán"
                         },
                         new RentProductItem
                         {
@@ -94,7 +96,8 @@ namespace ThuQuan.Controllers
                             Price = 897.296m,
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
                             RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
+                            ReturnDate = new DateTime(2025, 4, 3),
+                            Status = "Chờ thanh toán"
                         },
                         new RentProductItem
                         {
@@ -103,7 +106,8 @@ namespace ThuQuan.Controllers
                             Price = 897.296m,
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
                             RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
+                            ReturnDate = new DateTime(2025, 4, 3),
+                            Status = "Đã thanh toán"
                         },
                         new RentProductItem
                         {
@@ -112,91 +116,11 @@ namespace ThuQuan.Controllers
                             Price = 897.296m,
                             ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
                             RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "Sony A7 III",
-                            Variant = "Phân loại: Máy ảnh",
-                            Price = 449.680m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3)
+                            ReturnDate = new DateTime(2025, 4, 3),
+                            Status = "Đã thanh toán"
                         }
                     },
-                    TotalAmount = 1_346.976m
+
                 }
             };
 
@@ -232,7 +156,6 @@ namespace ThuQuan.Controllers
                     Description = "Máy ảnh bị vỡ màn hình.",
                     StatusText = "Chưa xử lý",
                     StatusClass = "status-pending",
-                    Penalty = "100,000 VND",
                     CanAppeal = true,
                     ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/09/9639186/3077cacc073eac5bda7056efb243cd0b_177967252842891613.jpg"
                 },
@@ -245,7 +168,6 @@ namespace ThuQuan.Controllers
                     Description = "Sản phẩm bị mất khi giao hàng.",
                     StatusText = "Đã xử lý",
                     StatusClass = "status-resolved",
-                    Penalty = "500,000 VND",
                     CanAppeal = false,
                     ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/09/9639186/3077cacc073eac5bda7056efb243cd0b_177967252842891613.jpg"
                 }

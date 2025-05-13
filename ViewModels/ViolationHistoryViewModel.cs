@@ -19,7 +19,6 @@ namespace YourProjectNamespace.Models
         public string Description { get; set; }
         public string StatusText { get; set; }
         public string StatusClass { get; set; }
-        public string Penalty { get; set; }
         public bool CanAppeal { get; set; }
     }
 }

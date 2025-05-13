@@ -9,7 +9,6 @@ namespace ThuQuan.ViewModels
     public class RentHistoryItem
     {
         public List<RentProductItem> RentItems { get; set; }
-        public decimal TotalAmount { get; set; }
     }
 
     public class RentProductItem
@@ -19,6 +18,7 @@ namespace ThuQuan.ViewModels
         public decimal Price { get; set; }
         public string ImageUrl { get; set; }
         public DateTime RentDate { get; set; } 
-        public DateTime ReturnDate { get; set; } 
+        public DateTime ReturnDate { get; set; }
+        public string Status { get; set; }
     }
 }
