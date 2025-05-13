@@ -352,6 +352,9 @@ namespace ThuQuan.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("DeviceId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -364,6 +367,8 @@ namespace ThuQuan.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DeviceId");
 
                     b.HasIndex("UserId");
 
@@ -455,6 +460,12 @@ namespace ThuQuan.Migrations
 
             modelBuilder.Entity("ThuQuan.Models.ViolationDetail", b =>
                 {
+                    b.HasOne("ThuQuan.Models.Device", "Device")
+                        .WithMany()
+                        .HasForeignKey("DeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ThuQuan.Models.Users", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
@@ -466,6 +477,8 @@ namespace ThuQuan.Migrations
                         .HasForeignKey("ViolationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Device");
 
                     b.Navigation("User");
 

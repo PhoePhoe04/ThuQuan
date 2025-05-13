@@ -1,24 +1,17 @@
+using ThuQuan.Models;
+
 namespace ThuQuan.ViewModels
 {
     public class RentHistoryViewModel
     {
-        public string UserName { get; set; }
-        public List<RentHistoryItem> RentHistoryItems { get; set; }
-    }
-
-    public class RentHistoryItem
-    {
-        public List<RentProductItem> RentItems { get; set; }
-    }
-
-    public class RentProductItem
-    {
-        public string ProductName { get; set; }
-        public string Variant { get; set; }
-        public decimal Price { get; set; }
+        public int Id { get; set; }
+        public string DeviceName { get; set; }
         public string ImageUrl { get; set; }
-        public DateTime RentDate { get; set; } 
-        public DateTime ReturnDate { get; set; }
+        public string CategoryName { get; set; }
+        public DateTime BorrowTime { get; set; }
+        public DateTime ReturnTime { get; set; }
+        public int Quantity { get; set; }
+        public double Total { get; set; }
         public string Status { get; set; }
     }
 }

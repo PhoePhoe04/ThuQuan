@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ThuQuan.Data;
 using ThuQuan.Models;
 using ThuQuan.ViewModels;
-using YourProjectNamespace.Models;
 
 namespace ThuQuan.Controllers
 {
@@ -10,10 +11,12 @@ namespace ThuQuan.Controllers
     public class ProfileController : Controller
     {
         private readonly UserManager<Users> _userManager;
+        private readonly ThuQuanContext _context;
 
-        public ProfileController(UserManager<Users> userManager)
+        public ProfileController(UserManager<Users> userManager, ThuQuanContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         [HttpGet("Detail")]
@@ -47,93 +50,71 @@ namespace ThuQuan.Controllers
 
             ViewData["ActiveTab"] = "RentHistory";
 
-            // Giả sử bạn có một nguồn dữ liệu về lịch sử thuê (ví dụ: từ database)
-            var rentHistoryItems = new List<RentHistoryItem>
-            {
-                new RentHistoryItem
-                    {
-                        RentItems = new List<RentProductItem>
-                        {
-                            new RentProductItem
-                            {
-                                ProductName = "Canon EOS C200",
-                                Variant = "Phân loại: Máy ảnh",
-                                Price = 825.200m,
-                                ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                                RentDate = new DateTime(2025, 4, 1),
-                                ReturnDate = new DateTime(2025, 4, 3),
-                                Status = "Đã thanh toán"
-                            }
-                        },
-                    },
-                new RentHistoryItem
+            CapNhatTrangThai();
+
+            // Lấy dữ liệu từ Database
+            var borrows = _context.Borrows
+                .Include(b => b.Device)
+                .ThenInclude(d => d.Category)
+                .Where(b => b.UserId == user.Id)
+                .Select(b => new RentHistoryViewModel
                 {
-                    RentItems = new List<RentProductItem>
-                    {
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
-                            Status = "Chờ thanh toán"
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
-                            Status = "Chờ thanh toán"
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
-                            Status = "Chờ thanh toán"
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
-                            Status = "Đã thanh toán"
-                        },
-                        new RentProductItem
-                        {
-                            ProductName = "DJI Ronin-S",
-                            Variant = "Phân loại: Gimbal",
-                            Price = 897.296m,
-                            ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/16/8600fc5ae3f4599cf22f01b09dae9718_8031910330149908909.png",
-                            RentDate = new DateTime(2025, 4, 1),
-                            ReturnDate = new DateTime(2025, 4, 3),
-                            Status = "Đã thanh toán"
-                        }
-                    },
-
-                }
-            };
-
-            var model = new RentHistoryViewModel
-            {
-                UserName = user.UserName,
-                RentHistoryItems = rentHistoryItems
-            };
-
-            return View(model);
+                    Id = b.Id,
+                    ImageUrl = b.Device.ImageUrl,
+                    DeviceName = b.Device.Name,
+                    CategoryName = b.Device.Category.Name,
+                    BorrowTime = b.BorrowTime,
+                    ReturnTime = b.ReturnTime,
+                    Quantity = b.Quantity,
+                    Total = b.Total,
+                    Status = b.Status
+                })
+                .ToList();
+            
+            return View("rentHistory",borrows);
         }
 
+        [HttpPost]
+        [Route("thanh-toan/{id}")]
+        public async Task<IActionResult> ThanhToan(int id)
+        {
+            var borrow = _context.Borrows.Find(id);
+            if (borrow != null && borrow.Status == "Chờ thanh toán")
+            {
+                borrow.Status = "Đang thuê";
+                _context.SaveChanges();
+            }
+            return RedirectToAction("RentHistory");
+        }
+        
+       [HttpPost]
+       [Route("tra-thiet-bi/{id}")]
+        public IActionResult TraThietBi(int id)
+        {
+            var borrow = _context.Borrows.Find(id);
+            if (borrow != null && borrow.Status == "Đang thuê")
+            {
+                borrow.Status = "Đã trả";
+                _context.SaveChanges();
+            }
+            return RedirectToAction("RentHistory");
+        }
+
+        [HttpPost]
+        [Route("cap-nhat-trang-thai")]
+        public async Task<IActionResult> CapNhatTrangThai()
+        {
+            var borrows = _context.Borrows.ToList();
+            foreach (var borrow in borrows)
+            {
+                if (borrow.ReturnTime < DateTime.Now.AddDays(-2) && borrow.Status == "Đang thuê")
+                {
+                    borrow.Status = "Trễ hạn";
+                }
+            }
+            _context.SaveChanges();
+            return RedirectToAction("RentHistory");
+        }
         // Violation History
         [HttpGet("violationHistory")]
         public async Task<IActionResult> ViolationHistory()
@@ -146,40 +127,25 @@ namespace ThuQuan.Controllers
 
             ViewData["ActiveTab"] = "RentHistory";
 
-            var violationHistoryItems = new List<ViolationHistoryItem>
-            {
-                new ViolationHistoryItem
+            // Lấy dữ liệu từ Database
+            var violationDetails = _context.ViolationDetails
+                .Include(v => v.Device)
+                .Include(v => v.Violation)
+                .Include(v => v.User)
+                .Select(b => new ViolationHistoryViewModel
                 {
-                    Code = "V123",
-                    Date = DateTime.Now,
-                    ProductName = "Camera Canon",
-                    Type = "Hư hỏng",
-                    Description = "Máy ảnh bị vỡ màn hình.",
-                    StatusText = "Chưa xử lý",
-                    StatusClass = "status-pending",
-                    CanAppeal = true,
-                    ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/09/9639186/3077cacc073eac5bda7056efb243cd0b_177967252842891613.jpg"
-                },
-                new ViolationHistoryItem
-                {
-                    Code = "V124",
-                    Date = DateTime.Now.AddDays(-1),
-                    ProductName = "Sony A7",
-                    Type = "Mất sản phẩm",
-                    Description = "Sản phẩm bị mất khi giao hàng.",
-                    StatusText = "Đã xử lý",
-                    StatusClass = "status-resolved",
-                    CanAppeal = false,
-                    ImageUrl = "https://upload-os-bbs.hoyolab.com/upload/2025/04/09/9639186/3077cacc073eac5bda7056efb243cd0b_177967252842891613.jpg"
-                }
-            };
-
-            var model = new ViolationHistoryViewModel
-            {
-                ViolationHistoryItems = violationHistoryItems
-            };
-
-            return View(model);
+                    CreatedAt = b.CreatedAt,
+                    Status = b.Status,
+                    ImageUrl = b.Device.ImageUrl,
+                    DeviceName = b.Device.Name,
+                    UserId = b.UserId,
+                    Name = b.Violation.Name,
+                    Penalty = b.Violation.Penalty,
+                    Description = b.Violation.Description
+                })
+                .ToList();
+            
+            return View("violationHistory", violationDetails);
         }
     }
 }
