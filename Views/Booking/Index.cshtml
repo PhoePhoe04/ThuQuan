@@ -1,0 +1,194 @@
+@model ThuQuan.ViewModels.BookingViewModel
+@{
+    ViewData["Title"] = "Đặt chỗ";
+}
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --light-color: #ecf0f1;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .sidebar {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .sidebar h5 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+        
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-box input {
+            padding-left: 40px;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            width: 100%;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 16px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .sidebar li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .sidebar li a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .sidebar li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .product-img {
+            height: 200px;
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-body {
+            padding: 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto;
+            padding-top: 15px;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .btn-book, .btn-favorite {
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-favorite {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            border: 1px solid #ddd;
+        }
+        
+        .btn-book {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4 mb-4">
+        <form class="d-flex justify-content-center">
+            <input class="form-control w-50" type="search" placeholder="Tìm phòng..." aria-label="Search">
+            <button class="btn btn-outline-success ms-2" type="submit">Tìm</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <!-- Product List -->
+            <div class="col-lg-12">
+                <div class="row">
+                     @foreach (var room in Model.Rooms)
+                    {
+                        <div class="col-md-3 mb-4">
+                            <div class="product-card">
+                                <div class="product-img">
+                                    <img src="@room.ImageRoom" alt="@room.RoomName" class="img-fluid">
+                                </div>
+                                <div class="product-body">
+                                    <h5 class="product-title">@room.RoomName</h5>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-book">Đặt chỗ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

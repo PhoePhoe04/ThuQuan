@@ -8,7 +8,35 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ThuQuan.styles.css" asp-append-version="true" />
-    
+
+    <style>
+        .bg-yellow { background-color:rgb(255, 255, 255); }
+        .navbar-brand img { height: 40px; }
+        .nav-link { color: #000 !important; }
+        .nav-link:hover { color: #0026ff !important; }
+        .intro-section {
+        background-color: #6c757d; /* Màu xám giống hình */
+        position: relative;
+        }
+        .intro-section h1 {
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-img-top {
+            object-fit: cover;
+            height: 200px;
+        }
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5); /* Lớp phủ tối cho chữ dễ đọc */
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+
 </head>
 <body>
     <header>
@@ -24,10 +52,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
+                        <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-dark" asp-controller="Booking" asp-action="Index">Đặt chỗ</a>
                     </li>
                 </ul>
                
