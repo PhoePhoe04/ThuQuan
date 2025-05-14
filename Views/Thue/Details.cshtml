@@ -1,22 +1,108 @@
-﻿@model Device
+﻿@model ThuQuan.Models.Device
 
 @{
     ViewData["Title"] = "Chi tiết sản phẩm";
 }
 
-<div class="container mt-4">
-    <h2>@Model.Name</h2>
+<style>
+    .product-image {
+        max-height: 400px;
+        object-fit: cover;
+    }
+    .price-section h3 {
+        font-size: 1.5rem;
+    }
+    .specifications li {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+    .rental-days select {
+        max-width: 150px;
+    }
+    .btn-rent {
+        background-color: #343a40;
+        color: white;
+        font-weight: bold;
+    }
+    .btn-rent:hover {
+        background-color: #23272b;
+    }
+</style>
+
+<div class="container mt-5">
     <div class="row">
+        <!-- Product Image Column -->
         <div class="col-md-6">
-            <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid rounded">
+            <img src="@Model.ImageUrl" alt="@Model.Name" class="img-fluid product-image rounded shadow-sm">
         </div>
+        
+        <!-- Product Details Column -->
         <div class="col-md-6">
-            <p><strong>Mô tả:</strong> @Model.Description</p>
-            <p><strong>Giá thuê:</strong> @Model.Price/ngày</p>
-            <p><strong>Số lượng:</strong> @Model.Quantity</p>
-            <p><strong>Trạng thái:</strong> @Model.Status</p>
-            <p><strong>Danh mục:</strong> @Model.Category.Name</p>
-            <a href="/Thue/Index" class="btn btn-secondary">Quay lại</a>
+            <h2 class="mb-1">@Model.Name</h2>
+            
+            <div class="category-badge mb-2">
+                <span class="badge bg-success text-white">@Model.Category</span>
+            </div>
+            
+            <div class="price-section mb-3">
+                <h3 class="text-success fw-bold">@Model.Price VNĐ/ngày</h3>
+                <p class="text-muted small">
+                    @Model.Description
+                </p>
+            </div>
+            
+            <div class="rental-days mb-4">
+            Nhập số lượng:
+                <input type="number"
+                        value="1"
+                        min="1"
+                        class="form-control d-inline me-2"
+                        data-price="@Model.Price"
+                        style="width: 70px;" onchange="updateQuantity('@Model.Id', this.value, this)"/>
+            </div>
+
+            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                <input type="hidden" name="deviceId" value="@Model.Id" />
+                <input type="hidden" name="name" value="@Model.Name" />
+                <input type="hidden" name="price" value="@Model.Price" />
+                <input type="hidden" name="imageUrl" value="@Model.ImageUrl" />
+                <input type="hidden" name="quantity" id="modal-quantity"/>
+                <button type="submit" class="btn btn-rent w-100 py-2 mb-3">Thêm vào giỏ hàng</button>
+                <a href="/Thue/Index" class="btn btn-secondary">Quay lại</a>
+            </form>
+            @if (TempData["CartMessage"] != null)
+            {
+                <div id="cart-message" class="alert alert-success" style="position:fixed; top:20px; right:20px; z-index:9999;">
+                    @TempData["CartMessage"]
+                </div>
+            }
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        let currentDeviceId = null;
+        let currentPrice = 0;
+        let currentQuantity = 1;
+        let currentTotal = 0;
+
+        function updateQuantity(deviceId, quantity, inputElem) {
+            if (!deviceId) {
+                alert("Device ID không hợp lệ.");
+                return;
+            }
+            if (quantity < 1) {
+                alert("Số lượng phải lớn hơn 0.");
+                inputElem.value = currentQuantity;
+                return;
+            }
+            var price = parseFloat(inputElem.getAttribute('data-price'));
+            currentQuantity = parseInt(quantity);
+            currentPrice = price;
+
+            document.getElementById('modal-quantity').value = currentQuantity;
+            updateSummaryTotal();
+        }
+    </script>
+}

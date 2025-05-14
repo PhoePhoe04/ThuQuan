@@ -61,34 +61,29 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
-            <div class="container-fluid">
-                <!-- Logo -->
-                <a class="navbar-brand" href="/">Thư Quán SGU</a>
-                <!-- Nút toggle cho màn hình nhỏ -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <!-- Các mục menu -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
-                        </li>
-                    </ul>
 
-                    <!-- <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Đăng nhập</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Giỏ hàng</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Hồ Chí Minh</a></li>
-                </ul> -->
+        <div class="container-fluid">
+            <!-- Logo -->
+            <a class="navbar-brand" href="/">Thư Quán SGU</a>
+            <!-- Nút toggle cho màn hình nhỏ -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Các mục menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
+                    </li>
+                    <li>
+                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Chính sách & Bảo mật</a>
+                    </li>
+                </ul>
+                <partial name="_LoginPartial"/>
 
-                    <!-- Đăng nhập và Giỏ hàng -->
-                    <partial name="_LoginPartial" />
-                </div>
             </div>
         </nav>
     </header>
@@ -100,7 +95,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - ThuQuan - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2025 - ThuQuan <a asp-area="" asp-controller="Home"></a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

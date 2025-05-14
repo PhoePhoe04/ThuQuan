@@ -1,6 +1,7 @@
 ﻿@model List<CartItem>
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
 
+
 @{
     ViewData["Title"] = "Giỏ hàng";
 }
@@ -9,60 +10,58 @@
     <input type="hidden" name="__RequestVerificationToken" value="@Antiforgery.GetAndStoreTokens(Context).RequestToken" />
 </div>
 
-<h2>Giỏ hàng của bạn</h2>
+<div class="container mt-4">
+    <h2 class="mb-4">Giỏ hàng</h2>
 
-@if (Model.Count == 0)
-{
-    <p>Giỏ hàng của bạn đang trống.</p>
-}
-else
-{
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Hình ảnh</th>
-                <th>Tên sản phẩm</th>
-                <th>Đơn giá</th>
-                <th>Số lượng</th>
-                <th>Tổng tiền</th>
-                <th>Hành động</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td><img src="@item.ImageUrl" alt="@item.Name" style="width: 50px; height: 50px;" /></td>
-                    <td>@item.Name</td>
-                    <td>@item.Price</td>
-                    <td>
-                        <input type="number"
-                               value="@item.Quantity"
-                               min="1"
-                               class="form-control d-inline"
-                               style="width: 70px;"
-                               data-price="@item.Price"
-                               onchange="updateQuantity(@item.DeviceId, this.value, this)" />
-                    </td>
-                    <td id="item-total-@item.DeviceId">@(item.Price * item.Quantity)</td>
-                    <td>
-                        <form asp-controller="Cart" asp-action="RemoveFromCart" method="post" style="display:inline;">
-                            <input type="hidden" name="deviceId" value="@item.DeviceId" />
-                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
-                        </form>
-                        <button type="button"
-                                class="btn btn-primary btn-sm"
-                                data-bs-toggle="modal"
-                                data-bs-target="#rentModal"
-                                onclick="setRentModal('@item.DeviceId', '@item.Price', '@(item.Price * item.Quantity)', '@item.Quantity')">
-                            Thuê
-                        </button>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+    @if (Model.Count == 0)
+    {
+        <div class="alert alert-info" role="alert">
+            Giỏ hàng của bạn đang trống.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-md-8">
+                @foreach (var item in Model)
+                {
+                    <div class="card mb-3">
+                        <div class="card-body d-flex align-items-center">
+                            <img src="@item.ImageUrl" alt="@item.Name" style="width: 100px; height: 100px; object-fit: cover; margin-right: 20px;" />
+                            <div class="flex-grow-1">
+                                <h5 class="card-title">@item.Name</h5>
+                                <div style="margin:10px 0 10px 0;">
+                                <strong>Đơn giá:</strong> <span id="modal-price">@item.Price VNĐ</span><br />
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <input type="number"
+                                           value="@item.Quantity"
+                                           min="1"
+                                           class="form-control d-inline me-2"
+                                           style="width: 70px;"
+                                           data-price="@item.Price"
+                                           onchange="updateQuantity('@item.DeviceId', this.value, this)" />
+                                    <button type="button"
+                                            class="btn btn-primary btn-sm"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#rentModal"
+                                            onclick="@(string.IsNullOrEmpty(item.DeviceId) ? "alert('Device ID không hợp lệ.');" : $"setRentModal('{item.Name}','{item.DeviceId}', '{item.Price}', '{item.Price * item.Quantity}', '{item.Quantity}')")">
+                                        Thuê
+                                    </button>
+                                    <form asp-controller="Cart" asp-action="RemoveFromCart" method="post" style="display:inline; margin-left: 10px;">
+                                        <input type="hidden" name="deviceId" value="@item.DeviceId" />
+                                        <button type="submit" class="btn btn-outline-secondary btn-sm">Xóa</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    }
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="rentModal" tabindex="-1" aria-labelledby="rentModalLabel" aria-hidden="true">
@@ -74,12 +73,16 @@ else
             </div>
             <div class="modal-body">
                 <input type="hidden" id="modal-deviceId-hidden" />
-                <strong>Device ID:</strong> <span id="modal-deviceId"></span><br />
+                <strong>Tên thiết bị:</strong> <span id="modal-deviceId"></span><br />
                 <strong>Đơn giá:</strong> <span id="modal-price"></span><br />
                 <strong>Số lượng:</strong> <span id="modal-quantity"></span><br />
                 <div class="mb-2 mt-2">
-                    <label for="modal-days" class="form-label">Số ngày thuê:</label>
-                    <input type="number" id="modal-days" class="form-control" value="1" min="1" onchange="updateModalTotal()" />
+                    <label for="modal-start-date" class="form-label">Ngày bắt đầu:</label>
+                    <input type="date" id="modal-start-date" class="form-control" onchange="updateModalTotal()" />
+                </div>
+                <div class="mb-2 mt-2">
+                    <label for="modal-end-date" class="form-label">Ngày trả:</label>
+                    <input type="date" id="modal-end-date" class="form-control" onchange="updateModalTotal()" />
                 </div>
                 <strong>Tổng tiền:</strong> <span id="modal-total"></span>
             </div>
@@ -98,56 +101,133 @@ else
         let currentQuantity = 1;
         let currentTotal = 0;
 
-        function setRentModal(deviceId, price, total, quantity) {
-            // Lấy số lượng mới nhất từ input trên dòng giỏ hàng
-            var qtyInput = document.querySelector('input[data-price][onchange*="updateQuantity(' + deviceId + '"]');
+        document.addEventListener('DOMContentLoaded', function () {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('modal-start-date').value = today;
+
+            document.getElementById('modal-start-date').setAttribute('min', today);
+            document.getElementById('modal-end-date').setAttribute('min', today);
+        });
+
+        function setRentModal(name, deviceId, price, total, quantity) {
+            if (!deviceId) {
+                alert("Device ID không hợp lệ. Vui lòng kiểm tra lại giỏ hàng.");
+                return;
+            }
+            var qtyInput = document.querySelector('input[data-price][onchange*="updateQuantity(\'' + deviceId + '\'"]');
             if (qtyInput) {
                 currentQuantity = parseInt(qtyInput.value) || 1;
             } else {
                 currentQuantity = parseInt(quantity) || 1;
             }
             currentDeviceId = deviceId;
-            currentPrice = parseFloat(price);
+            currentPrice = parseFloat(price.replace(/[,\.]/g, '').trim());
 
-            document.getElementById('modal-deviceId').innerText = deviceId;
+            document.getElementById('modal-deviceId').innerText = name;
             document.getElementById('modal-deviceId-hidden').value = deviceId;
-            document.getElementById('modal-price').innerText = price;
+            document.getElementById('modal-price').innerText = currentPrice.toLocaleString('vi-VN') + ' VNĐ';
             document.getElementById('modal-quantity').innerText = currentQuantity;
-            document.getElementById('modal-days').value = 1;
-            document.getElementById('modal-total').innerText = currentPrice * currentQuantity * 1;
+            updateModalTotal();
+
         }
 
         function updateQuantity(deviceId, quantity, inputElem) {
-            if (quantity < 1) {
-                alert("Số lượng phải lớn hơn 0.");
+            if (!deviceId) {
+                alert("Device ID không hợp lệ.");
                 return;
             }
-
-            // Lấy giá đơn vị từ input
+            if (quantity < 1) {
+                alert("Số lượng phải lớn hơn 0.");
+                inputElem.value = currentQuantity;
+                return;
+            }
             var price = parseFloat(inputElem.getAttribute('data-price'));
-            // Cập nhật tổng tiền của item này ngay lập tức trên giao diện
-            var itemTotalElem = document.getElementById('item-total-' + deviceId);
-            if (itemTotalElem) {
-                itemTotalElem.innerText = price * quantity;
+            currentQuantity = parseInt(quantity);
+            currentPrice = price;
+
+            document.getElementById('modal-quantity').value = currentQuantity;
+            updateSummaryTotal();
+        }
+
+        function updateModalTotal() {
+            const startDateInput = document.getElementById('modal-start-date');
+            const endDateInput = document.getElementById('modal-end-date');
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+            const quantity = parseInt(document.getElementById('modal-quantity').innerText) || 1;
+
+            if (startDateInput.value && endDateInput.value && startDate > endDate) {
+                endDateInput.value = startDateInput.value;
+            }
+
+            if (startDateInput.value && endDateInput.value) {
+                const days = Math.ceil((new Date(endDateInput.value) - new Date(startDateInput.value)) / (1000 * 60 * 60 * 24)) + 1;
+                const newTotal = currentPrice * quantity * days;
+                document.getElementById('modal-total').innerText = newTotal.toLocaleString('vi-VN') + ' VNĐ';
+            } else {
+                document.getElementById('modal-total').innerText = (currentPrice * quantity).toLocaleString('vi-VN') + ' VNĐ';
             }
         }
 
+        function updateSummaryTotal() {
+            const startDateInput = document.getElementById('modal-start-date');
+            const endDateInput = document.getElementById('modal-end-date');
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+            const quantity = parseInt(document.getElementById('modal-quantity').value) || 1;
 
+            if (startDateInput.value && endDateInput.value && startDate > endDate) {
+                endDateInput.value = startDateInput.value;
+            }
 
-
-        function updateModalTotal() {
-            const days = parseInt(document.getElementById('modal-days').value) || 1;
-            // Lấy lại số lượng mới nhất từ modal
-            const quantity = parseInt(document.getElementById('modal-quantity').innerText) || 1;
-            const newTotal = currentPrice * quantity * days;
-            document.getElementById('modal-total').innerText = newTotal;
+            if (startDateInput.value && endDateInput.value) {
+                const days = Math.ceil((new Date(endDateInput.value) - new Date(startDateInput.value)) / (1000 * 60 * 60 * 24)) + 1;
+                const newTotal = currentPrice * quantity * days;
+                document.getElementById('modal-total').innerText = newTotal.toLocaleString('vi-VN') + ' VNĐ';
+            } else {
+                document.getElementById('modal-total').innerText = (currentPrice * quantity).toLocaleString('vi-VN') + ' VNĐ';
+            }
         }
 
         function confirmBorrow() {
-            const days = parseInt(document.getElementById('modal-days').value) || 1;
-            const deviceId = currentDeviceId;
+            const startDate = document.getElementById('modal-start-date').value;
+            const endDate = document.getElementById('modal-end-date').value;
             const quantity = currentQuantity;
+
+            if (!startDate || !endDate || !currentDeviceId) {
+                alert("Vui lòng chọn đầy đủ thông tin (Ngày bắt đầu và ngày kết thúc).");
+                return;
+            }
+
+            const start = new Date(startDate);
+            const end = new Date(endDate);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (start < today) {
+                alert("Không thể chọn ngày bắt đầu trước ngày hôm nay.");
+                document.getElementById('modal-start-date').value = today.toISOString().split('T')[0];
+                return;
+            }
+
+            if (start > end) {
+                alert("Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu.");
+                document.getElementById('modal-end-date').value = startDate;
+                return;
+            }
+
+            const days = Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1;
+            const deviceId = currentDeviceId;
             const total = currentPrice * quantity * days;
+
+            console.log("Dữ liệu gửi đi:", {
+                deviceId: deviceId,
+                quantity: quantity,
+                startDate: startDate,
+                endDate: endDate,
+                days: days,
+                total: total
+            });
 
             fetch('/Cart/Borrow', {
                 method: 'POST',
@@ -158,25 +238,29 @@ else
                 body: JSON.stringify({
                     deviceId: deviceId,
                     quantity: quantity,
+                    startDate: startDate,
+                    endDate: endDate,
                     days: days,
                     total: total
                 })
             })
             .then(response => {
-                if (response.ok) {
-                    // Đóng modal và thông báo thành công
-                    var modal = bootstrap.Modal.getInstance(document.getElementById('rentModal'));
-                    modal.hide();
-                    alert('Đã gửi yêu cầu thuê thành công!');
-                    // Có thể reload lại trang hoặc cập nhật giao diện nếu muốn
-                    location.reload();
-                } else {
-                    throw new Error("Thuê thất bại.");
+                if (!response.ok) {
+                    return response.text().then(text => {
+                        throw new Error(`Thuê thất bại. Mã trạng thái: ${response.status}. Phản hồi: ${text}`);
+                    });
                 }
+                return response.text().then(text => text ? JSON.parse(text) : { success: true });
+            })
+            .then(data => {
+                var modal = bootstrap.Modal.getInstance(document.getElementById('rentModal'));
+                if (modal) modal.hide();
+                alert('Đã gửi yêu cầu thuê thành công!');
+                location.reload();
             })
             .catch(error => {
                 alert("Đã xảy ra lỗi khi thuê thiết bị.");
-                console.error(error);
+                console.error("Lỗi chi tiết:", error.message);
             });
         }
     </script>
