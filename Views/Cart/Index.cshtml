@@ -37,10 +37,11 @@
                                     <input type="number"
                                            value="@item.Quantity"
                                            min="1"
+                                           max="@item.Max"
                                            class="form-control d-inline me-2"
                                            style="width: 70px;"
                                            data-price="@item.Price"
-                                           onchange="updateQuantity('@item.DeviceId', this.value, this)" />
+                                           onchange="updateQuantity('@item.DeviceId', this.value, this, @item.Max)" />
                                     <button type="button"
                                             class="btn btn-primary btn-sm"
                                             data-bs-toggle="modal"
@@ -131,13 +132,18 @@
 
         }
 
-        function updateQuantity(deviceId, quantity, inputElem) {
+        function updateQuantity(deviceId, quantity, inputElem, deviceQuantity) {
             if (!deviceId) {
                 alert("Device ID không hợp lệ.");
                 return;
             }
             if (quantity < 1) {
                 alert("Số lượng phải lớn hơn 0.");
+                inputElem.value = currentQuantity;
+                return;
+            }
+            if (deviceQuantity<quantity) {
+                alert(`Số lượng thuê chưa phù hợp. Sản phẩm chỉ còn ${deviceQuantity} cái.`);
                 inputElem.value = currentQuantity;
                 return;
             }

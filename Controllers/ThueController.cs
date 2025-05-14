@@ -33,7 +33,7 @@ namespace ThuQuan.Controllers
 
             if (categoryId.HasValue)
             {
-                devicesQuery = devicesQuery.Where(d => d.CategoryId == categoryId.Value);
+                devicesQuery = devicesQuery.Where(d => d.CategoryId == categoryId.Value && d.Status == "Available");
             }
 
             var viewModel = new ThueIndexViewModel
@@ -52,7 +52,7 @@ namespace ThuQuan.Controllers
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                thueQuery = thueQuery.Where(t => t.Name.ToLower().Contains(searchTerm));
+                thueQuery = thueQuery.Where(t => t.Name.ToLower().Contains(searchTerm) && t.Status == "Available");
             }
 
             var viewModel = new ThueIndexViewModel
