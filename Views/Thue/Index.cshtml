@@ -1,4 +1,4 @@
-
+﻿
 ﻿@using ThuQuan.ViewModels
 @model ThueIndexViewModel;
 @{
@@ -198,23 +198,23 @@
 
     <!-- Thanh tìm kiếm -->
     <div class="container mt-4 mb-4">
-        <form class="d-flex justify-content-center">
+        @* <form asp-controller="Thue" asp-action="Search" asp-route-searchTerm="@ViewBag.SearchTerm" class="d-flex justify-content-center">
             <input class="form-control w-50" type="search" placeholder="Tìm kiếm thiết bị..." aria-label="Search">
             <button class="btn btn-outline-success ms-2" type="submit">Tìm</button>
-        </form>
+        </form> *@
     </div>
     
     <!-- Nội dung chính -->
     <div class="container">
         <div class="row">
             <!-- Sidebar -->
-             <div class="col-lg-3 mb-4">
+             <div class="col-lg-3">
                 <div class="sidebar">
                     <h5>Tìm kiếm</h5>
-                    <div class="search-box">
+                    @* <div class="search-box">
                         <i class="fas fa-search"></i>
                         <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                    </div>
+                    </div> *@
                     <ul>
                         <li>
                             <a asp-controller="Thue" asp-action="Index" asp-route-categoryId="">Tất cả</a>
@@ -230,9 +230,8 @@
             </div> 
 
             <!-- Product List -->
-            <div class="col-lg-12">
+            <div class="col-lg-9">
                 <div class="row">
-
                     @foreach (var device in Model.Devices)
                     {
                         <div class="col-md-4 mb-4">
