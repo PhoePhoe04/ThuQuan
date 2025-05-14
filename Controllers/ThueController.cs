@@ -45,6 +45,25 @@ namespace ThuQuan.Controllers
             return View("Index", viewModel);
         }
 
+        [HttpGet("Thue/Search/{searchTerm?}")]
+        public async Task<IActionResult> Search(string searchTerm)
+        {
+            var thueQuery = _context.Devices.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                thueQuery = thueQuery.Where(t => t.Name.ToLower().Contains(searchTerm));
+            }
+
+            var viewModel = new ThueIndexViewModel
+            {
+                Devices = await thueQuery.ToListAsync(),
+                Categories = await _context.Categories.ToListAsync()
+            };
+
+            return View("Index", viewModel);
+        }
+
         // Thue/Details
         public async Task<IActionResult> Details(int id)
         {

@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,69 +11,86 @@
     <link rel="stylesheet" href="~/ThuQuan.styles.css" asp-append-version="true" />
 
     <style>
-        .bg-yellow { background-color:rgb(255, 255, 255); }
-        .navbar-brand img { height: 40px; }
-        .nav-link { color: #000 !important; }
-        .nav-link:hover { color: #0026ff !important; }
-        .intro-section {
-        background-color: #6c757d; /* Màu xám giống hình */
-        position: relative;
+        .bg-yellow {
+            background-color: rgb(255, 255, 255);
         }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .nav-link {
+            color: #000 !important;
+        }
+
+        .nav-link:hover {
+            color: #0026ff !important;
+        }
+
+        .intro-section {
+            background-color: #6c757d;
+            /* Màu xám giống hình */
+            position: relative;
+        }
+
         .intro-section h1 {
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
+
         .card {
             border: none;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
+
         .card-img-top {
             object-fit: cover;
             height: 200px;
         }
+
         .carousel-caption {
-            background: rgba(0, 0, 0, 0.5); /* Lớp phủ tối cho chữ dễ đọc */
+            background: rgba(0, 0, 0, 0.5);
+            /* Lớp phủ tối cho chữ dễ đọc */
             padding: 20px;
             border-radius: 10px;
         }
     </style>
 
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-yellow">
-        <div class="container-fluid">
-            <!-- Logo -->
-            <a class="navbar-brand" href="/">Thư Quán SGU</a>
-            <!-- Nút toggle cho màn hình nhỏ -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Các mục menu -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
-                    </li>
-                    <li>
-                        <a class="nav-link text-dark" asp-controller="Booking" asp-action="Index">Đặt chỗ</a>
-                    </li>
-                </ul>
-               
-                <!-- <ul class="navbar-nav">
+            <div class="container-fluid">
+                <!-- Logo -->
+                <a class="navbar-brand" href="/">Thư Quán SGU</a>
+                <!-- Nút toggle cho màn hình nhỏ -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- Các mục menu -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Thue" asp-action="Index">Thuê thiết bị</a>
+                        </li>
+                    </ul>
+
+                    <!-- <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="#">Đăng nhập</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Giỏ hàng</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Hồ Chí Minh</a></li>
                 </ul> -->
 
-                 <!-- Đăng nhập và Giỏ hàng -->
-                <partial name="_LoginPartial"/>
+                    <!-- Đăng nhập và Giỏ hàng -->
+                    <partial name="_LoginPartial" />
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     </header>
     <div>
         <main role="main" class="pb-3">
@@ -90,4 +108,5 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
