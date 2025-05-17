@@ -42,7 +42,11 @@ namespace ThuQuan.Controllers
                     Name = name,
                     Price = price,
                     ImageUrl = imageUrl,
-                    Quantity = quantity
+                    Quantity = quantity,
+                    Max =  _context.Devices
+                        .Where(d => d.Id == int.Parse(deviceId))
+                        .Select(d => d.Quantity)
+                        .FirstOrDefault()
                 });
             }
 

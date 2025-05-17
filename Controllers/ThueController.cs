@@ -33,7 +33,7 @@ namespace ThuQuan.Controllers
             // Lọc theo categoryId nếu có
             if (categoryId.HasValue)
             {
-                devicesQuery = devicesQuery.Where(d => d.CategoryId == categoryId.Value);
+                devicesQuery = devicesQuery.Where(d => d.CategoryId == categoryId.Value && d.Status == "Available");
             }
 
             // Tính tổng số thiết bị và số trang
