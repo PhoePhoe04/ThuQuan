@@ -116,7 +116,7 @@ namespace ThuQuan.Controllers
                 Total = (double)request.Total,
                 BorrowTime = now,
                 ReturnTime = now.AddDays(request.Days),
-                Status = "Đang xử lý"
+                Status = "Chờ thanh toán"
             };
 
             // Lưu vào database

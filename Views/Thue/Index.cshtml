@@ -1,4 +1,3 @@
-﻿
 ﻿@using ThuQuan.ViewModels
 @model ThueIndexViewModel;
 @{
@@ -12,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -19,11 +19,23 @@
             --light-color: #ecf0f1;
         }
         
-        body {
+        html, body {
+            height: 100%;
+            margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f8f9fa;
         }
-        
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            flex: 1 0 auto;
+            min-height: calc(100vh - 100px); /* Adjust based on footer height */
+        }
+
         .sidebar {
             background-color: white;
             border-radius: 10px;
@@ -92,7 +104,11 @@
             margin-bottom: 20px;
             overflow: hidden;
             transition: transform 0.3s;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
+        
         .product-img {
             height: 200px;
             background-color: #eee;
@@ -101,34 +117,29 @@
             justify-content: center;
         }
         
+        .product-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
         .product-card:hover {
             transform: translateY(-5px);
         }
         
-        .product-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            overflow: hidden;
-            transition: transform 0.3s;
-            height: 100%; /* Thêm dòng này */
-            display: flex; /* Thêm dòng này */
-            flex-direction: column; /* Thêm dòng này */
-        }
-        
         .product-body {
             padding: 15px;
-            flex-grow: 1; /* Thêm dòng này để phần body mở rộng chiếm không gian còn lại */
-            display: flex; /* Thêm dòng này */
-            flex-direction: column; /* Thêm dòng này */
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .action-buttons {
             display: flex;
             justify-content: space-between;
-            margin-top: auto; /* Thay đổi từ margin-top: 15px thành margin-top: auto */
-            padding-top: 15px; /* Thêm dòng này để giữ khoảng cách */
+            margin-top: auto;
+            padding-top: 15px;
         }
         
         .product-title {
@@ -166,111 +177,199 @@
             color: white;
         }
         
+        .pagination .page-link {
+            color: var(--primary-color);
+            border-radius: 5px;
+            margin: 0 2px;
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .pagination .page-item.disabled .page-link {
+            color: #6c757d;
+        }
+
+        .pagination {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .pagination .page-item .page-link {
+            padding: 6px 12px;
+        }
+
+        footer {
+            flex-shrink: 0;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e7e7e7;
+            padding: 15px 0;
+        }
     </style>
 </head>
+<body>
+    <div class="content-wrapper">
+        <!-- Search bar -->
+        <div class="container mt-4 mb-4">
+            <form asp-controller="Thue" asp-action="Search" method="get" class="d-flex justify-content-center">
+                <input class="form-control w-50" name="searchTerm" type="search" placeholder="Tìm kiếm thiết bị..." aria-label="Search" value="@Model.SearchTerm">
+                <button class="btn btn-outline-success ms-2" type="submit">Tìm</button>
+            </form>
+        </div>
+        
+        <!-- Main content -->
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3">
+                    <div class="sidebar">
+                        <h5>Tìm kiếm</h5>
+                        <ul>
+                            <li>
+                                <a asp-controller="Thue" asp-action="Index" asp-route-categoryId="">Tất cả</a>
+                            </li>
+                            @if (Model.Categories != null)
+                            {
+                                @foreach (var category in Model.Categories)
+                                {
+                                    <li>
+                                        <a asp-controller="Thue" asp-action="Index" asp-route-categoryId="@category.Id">@category.Name</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div> 
 
-
-    <style>
-        .intro-section {
-        background-color: #6c757d; /* Màu xám giống hình */
-        position: relative;
-        }
-        .intro-section h1 {
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        .card {
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .card-img-top {
-            object-fit: cover;
-            height: 200px;
-        }
-
-        .product-img img {
-            width: 100%; /* Đảm bảo hình ảnh chiếm toàn bộ chiều rộng */
-            height: 200px; /* Đặt chiều cao cố định */
-            object-fit: cover; /* Cắt hình ảnh để vừa với khung mà không bị méo */
-            border-radius: 10px; /* Tùy chọn: bo góc hình ảnh */
-        }
-    </style>
-
-    <!-- Thanh tìm kiếm -->
-    <div class="container mt-4 mb-4">
-        @* <form asp-controller="Thue" asp-action="Search" asp-route-searchTerm="@ViewBag.SearchTerm" class="d-flex justify-content-center">
-            <input class="form-control w-50" type="search" placeholder="Tìm kiếm thiết bị..." aria-label="Search">
-            <button class="btn btn-outline-success ms-2" type="submit">Tìm</button>
-        </form> *@
-    </div>
-    
-    <!-- Nội dung chính -->
-    <div class="container">
-        <div class="row">
-            <!-- Sidebar -->
-             <div class="col-lg-3">
-                <div class="sidebar">
-                    <h5>Tìm kiếm</h5>
-                    @* <div class="search-box">
-                        <i class="fas fa-search"></i>
-                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                    </div> *@
-                    <ul>
-                        <li>
-                            <a asp-controller="Thue" asp-action="Index" asp-route-categoryId="">Tất cả</a>
-                        </li>
-					@foreach (var category in Model.Categories)
-					{
-                        <li>
-                            <a asp-controller="Thue" asp-action="Index" asp-route-categoryId=@category.Id>@category.Name</a>
-                        </li>
-					}
-                    </ul>
-                </div>
-            </div> 
-
-            <!-- Product List -->
-            <div class="col-lg-9">
-                <div class="row">
-                    @foreach (var device in Model.Devices)
-                    {
-                        <div class="col-md-4 mb-4">
-                            <div class="product-card">
-                                <div class="product-img">
-                                    <img src="@device.ImageUrl" alt="@device.Name" class="product-img" />
-                                </div>
-                                <div class="product-body">
-                                    <h5 class="product-title">@device.Name</h5>
-                                    <p class="product-tech"><strong>Mô tả:</strong> @device.Description</p>
-                                    <p class="product-spec">Số lượng: @device.Quantity</p>
-                                    <p class="product-spec">Giá: @device.Price/ngày</p>
-                                    <p class="product-spec">Trạng thái: @device.Status</p>
-                                    <div class="action-buttons">
-                                        <form asp-controller="Cart" asp-action="AddToCart" method="post" style="display:inline;">
-                                            <input type="hidden" name="deviceId" value="@device.Id" />
-                                            <input type="hidden" name="name" value="@device.Name" />
-                                            <input type="hidden" name="price" value="@device.Price" />
-                                            <input type="hidden" name="imageUrl" value="@device.ImageUrl" />
-                                            <input type="hidden" name="quantity" value="1" />
-                                            <button type="submit" class="btn btn-rent">Thêm vào giỏ hàng</button>
-                                        </form>
-                                        <a asp-controller="Thue" asp-action="Details" asp-route-id="@device.Id" class="btn btn-favorite text-decoration-none text-black">Chi tiết</a>
+                <!-- Product List -->
+                <div class="col-lg-9">
+                    <div class="row">
+                        @if (Model.Devices != null && Model.Devices.Any())
+                        {
+                            @foreach (var device in Model.Devices)
+                            {
+                                <div class="col-md-4 mb-4">
+                                    <div class="product-card">
+                                        <div class="product-img">
+                                            <img src="@device.ImageUrl" alt="@device.Name" class="product-img" />
+                                        </div>
+                                        <div class="product-body">
+                                            <h5 class="product-title">@device.Name</h5>
+                                            <p class="product-tech"><strong>Mô tả:</strong> @device.Description</p>
+                                            <p class="product-spec">Số lượng: @device.Quantity</p>
+                                            <p class="product-spec">Giá: @device.Price/ngày</p>
+                                            <p class="product-spec">Trạng thái: @device.Status</p>
+                                            <div class="action-buttons">
+                                                <form asp-controller="Cart" asp-action="AddToCart" method="post" style="display:inline;">
+                                                    <input type="hidden" name="deviceId" value="@device.Id" />
+                                                    <input type="hidden" name="name" value="@device.Name" />
+                                                    <input type="hidden" name="price" value="@device.Price" />
+                                                    <input type="hidden" name="imageUrl" value="@device.ImageUrl" />
+                                                    <input type="hidden" name="quantity" value="1" />
+                                                    <button type="submit" class="btn btn-rent">Thêm vào giỏ hàng</button>
+                                                </form>
+                                                <a asp-controller="Thue" asp-action="Details" asp-route-id="@device.Id" class="btn btn-favorite text-decoration-none text-black">Chi tiết</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="text-center text-muted mt-4">Không tìm thấy thiết bị nào.</p>
+                        }
+                    </div>
+                    @if (TempData["CartMessage"] != null)
+                    {
+                        <div id="cart-message" class="alert alert-success" style="position:fixed; top:20px; right:20px; z-index:9999;">
+                            @TempData["CartMessage"]
                         </div>
                     }
+
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+                                <a class="page-link" 
+                                   asp-controller="Thue" 
+                                   asp-action="@(string.IsNullOrEmpty(Model.SearchTerm) ? "Index" : "Search")" 
+                                   asp-route-page="@(Model.CurrentPage - 1)" 
+                                   asp-route-categoryId="@Model.CategoryId"
+                                   asp-route-searchTerm="@Model.SearchTerm">Trước</a>
+                            </li>
+                            @{
+                                int maxPagesToShow = 5;
+                                int startPage = Math.Max(1, Model.CurrentPage - 2);
+                                int endPage = Math.Min(Model.TotalPages, startPage + maxPagesToShow - 1);
+
+                                if (endPage - startPage + 1 < maxPagesToShow)
+                                {
+                                    startPage = Math.Max(1, endPage - maxPagesToShow + 1);
+                                }
+
+                                if (startPage > 1)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" 
+                                           asp-controller="Thue" 
+                                           asp-action="@(string.IsNullOrEmpty(Model.SearchTerm) ? "Index" : "Search")" 
+                                           asp-route-page="1" 
+                                           asp-route-categoryId="@Model.CategoryId"
+                                           asp-route-searchTerm="@Model.SearchTerm">1</a>
+                                    </li>
+                                    if (startPage > 2)
+                                    {
+                                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                                    }
+                                }
+
+                                for (int i = startPage; i <= endPage; i++)
+                                {
+                                    <li class="page-item @(Model.CurrentPage == i ? "active" : "")">
+                                        <a class="page-link" 
+                                           asp-controller="Thue" 
+                                           asp-action="@(string.IsNullOrEmpty(Model.SearchTerm) ? "Index" : "Search")" 
+                                           asp-route-page="@i" 
+                                           asp-route-categoryId="@Model.CategoryId"
+                                           asp-route-searchTerm="@Model.SearchTerm">@i</a>
+                                    </li>
+                                }
+
+                                if (endPage < Model.TotalPages)
+                                {
+                                    if (endPage < Model.TotalPages - 1)
+                                    {
+                                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                                    }
+                                    <li class="page-item">
+                                        <a class="page-link" 
+                                           asp-controller="Thue" 
+                                           asp-action="@(string.IsNullOrEmpty(Model.SearchTerm) ? "Index" : "Search")" 
+                                           asp-route-page="@Model.TotalPages" 
+                                           asp-route-categoryId="@Model.CategoryId"
+                                           asp-route-searchTerm="@Model.SearchTerm">@Model.TotalPages</a>
+                                    </li>
+                                }
+                            }
+                            <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+                                <a class="page-link" 
+                                   asp-controller="Thue" 
+                                   asp-action="@(string.IsNullOrEmpty(Model.SearchTerm) ? "Index" : "Search")" 
+                                   asp-route-page="@(Model.CurrentPage + 1)" 
+                                   asp-route-categoryId="@Model.CategoryId"
+                                   asp-route-searchTerm="@Model.SearchTerm">Sau</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-                @if (TempData["CartMessage"] != null)
-                {
-                    <div id="cart-message" class="alert alert-success" style="position:fixed; top:20px; right:20px; z-index:9999;">
-                        @TempData["CartMessage"]
-                    </div>
-                }
             </div>
         </div>
     </div>
-</html>
+    
 
 <script>
     window.onload = function() {
@@ -282,4 +381,5 @@
         }
     };
 </script>
-
+</body>
+</html>

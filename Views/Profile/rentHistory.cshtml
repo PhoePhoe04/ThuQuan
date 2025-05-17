@@ -284,6 +284,10 @@
                                         {
                                             <span style="color: red; font-weight: bold;">@item.Status</span>
                                         }
+                                        else if (item.Status == "Đã thanh toán")
+                                        {
+                                            <span style="color: green; font-weight: bold;">@item.Status</span>
+                                        }
                                         else
                                         {
                                             <span style="color: black; font-weight: bold;">@item.Status</span>
@@ -292,8 +296,7 @@
                                     <td style="padding: 12px; border: 1px solid #ddd;">
                                         @if (item.Status == "Chờ thanh toán")
                                         {
-                                            <form  asp-controller="Profile" asp-action="ThanhToan" asp-route-id="@item.Id">
-
+                                            <form method="post" asp-controller="Profile" asp-action="ThanhToan" asp-route-id="@item.Id">
                                                 <button class="btn">Thanh toán</button>
                                             </form>
                                         }
@@ -319,6 +322,8 @@
         </div>
 
     </div>
+
+</div>
     <script src="~/js/rentHistory.js"></script>
 </body>
 
