@@ -81,7 +81,7 @@ namespace ThuQuan.Controllers
             var borrow = _context.Borrows.Find(id);
             if (borrow != null && borrow.Status == "Chờ thanh toán")
             {
-                borrow.Status = "Đang thuê";
+                borrow.Status = "Đã thanh toán";
                 _context.SaveChanges();
             }
             return RedirectToAction("RentHistory");
